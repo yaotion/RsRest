@@ -1,0 +1,147 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>CC301 传真收发演示1.0</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+<script   language=javascript>  
+var vRecvfaxwin,vSendfaxwin;
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+
+
+function opensubRecvFax()
+{
+	if(!vRecvfaxwin)
+	{
+	   	vRecvfaxwin=window.open('recvfax.htm','recvfaxwin','height=600, width=700, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');   
+	}
+}
+function opensubSendfax()
+{
+	if(!vSendfaxwin)
+	{
+	   	vSendfaxwin=window.open('sendfax.htm','sendfaxwin','height=600, width=700, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');   
+	}
+}
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	var vValue=" type="+uEventType+" Handle="+uHandle+" Result="+uResult+" szdata="+szdata;
+	switch(uEventType)
+	{
+	case BriEvent_PhoneHook:// 本地电话机摘机事件
+		AppendStatusEx(uID,"本地电话机摘机"+vValue);
+	break;	
+	case BriEvent_PhoneDial:// 只有在本地话机摘机，没有调用软摘机时，检测到DTMF拨号
+		AppendStatusEx(uID,"本地话机拨号"+vValue);
+	break;	
+	case BriEvent_PhoneHang:// 本地电话机挂机事件
+		AppendStatusEx(uID,"本地电话机挂机"+vValue);
+	break;
+	case BriEvent_CallIn:// 外线通道来电响铃事件
+		AppendStatusEx(uID,"外线通道来电响铃事件"+vValue);
+	break;
+	case BriEvent_GetCallID://得到来电号码
+		AppendStatusEx(uID,"得到来电号码"+vValue);
+	break;
+	case BriEvent_StopCallIn:// 对方停止呼叫(产生一个未接电话)
+		AppendStatusEx(uID,"对方停止呼叫(产生一个未接电话)"+vValue);
+	break;
+	case BriEvent_RemoteHook:// 拨号后,被叫方摘机事件
+		AppendStatusEx(uID,"拨号后,被叫方摘机事件"+vValue);
+	break;
+	case BriEvent_RemoteHang://对方挂机事件
+		AppendStatusEx(uID,"对方挂机事件"+vValue);
+	break;
+	case BriEvent_Busy:// 检测到忙音事件,表示PSTN线路已经被断开
+		AppendStatusEx(uID,"检测到忙音事件,表示PSTN线路已经被断开"+vValue);
+	break;
+	case BriEvent_DialTone:// 本地摘机后检测到拨号音
+		AppendStatusEx(uID,"本地摘机后检测到拨号音"+vValue);
+	break;
+	case BriEvent_RingBack:// 电话机拨号结束呼出事件。
+		AppendStatusEx(uID,"电话机拨号结束呼出事件"+vValue);
+	break;
+	case BriEvent_FaxRecvFinished:// 接收传真完成
+		AppendStatusEx(uID,"接收传真完成"+vValue);
+	break;
+	case BriEvent_FaxRecvFailed:// 接收传真失败
+		AppendStatusEx(uID,"接收传真失败"+vValue);
+	break;
+	case BriEvent_FaxSendFinished:// 发送传真完成
+		AppendStatusEx(uID,"发送传真完成"+vValue);
+	break;
+	case BriEvent_FaxSendFailed:// 发送传真失败
+		AppendStatusEx(uID,"发送传真失败"+vValue);
+	break;
+	case BriEvent_DevErr://设备错误
+		AppendStatusEx(uID,"设备错误"+vValue);
+	break;
+	default:
+		if(uEventType < BriEvent_EndID)
+			AppendStatusEx(uID,"忽略其它事件发生:ID=" + uEventType+ vValue);	
+	break;
+	}	
+	
+	if(vRecvfaxwin)
+		vRecvfaxwin.T_GetEvent(uID,uEventType,uHandle,uResult,szdata);
+	if(vSendfaxwin)
+		vSendfaxwin.T_GetEvent(uID,uEventType,uHandle,uResult,szdata);
+}
+
+function	ExitFaxdemo()
+{
+	if(vRecvfaxwin)
+		vRecvfaxwin.close();
+	if(vSendfaxwin)
+		vSendfaxwin.close();	
+}
+
+</script>   
+  
+<body onload="TV_Initialize()" onunload="ExitFaxdemo();TV_Disable()">
+<SCRIPT LANGUAGE="JavaScript" FOR="qnviccub" EVENT="OnQnvEvent(chID,type,handle,result,param,szdata,szdataex)">
+	T_GetEvent(chID,type,handle,result,szdata)
+</SCRIPT>
+<p>
+当前主页面：</p>
+<p>
+<textarea id="StatusArea" rows="13" name="S1" cols="86"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==
+" width="33" height="33"></object>
+</p>
+
+
+<p><input type="button" value="打开设备" name="B3" onClick="TV_Initialize()">
+<input type="button" value="关闭设备" name="B6" onclick="TV_Disable()">&nbsp;&nbsp;&nbsp;</p>
+
+<form>
+	<p>
+		<input type="text" name="T1" size="20" id="dialcode">
+		<input type="button" value="拨号" name="B10" onclick="TV_StartDial(0,dialcode.value)"></p>
+</form>
+<p><input type="button" value="摘机" name="B7" onclick="TV_OffHookCtrl(0)">
+<input type="button" value="挂机" name="B8" onclick="TV_HangUpCtrl(0)">
+</p>
+
+
+<p><input type="button" value="接收传真" name="B11" onclick="opensubRecvFax()">&nbsp;
+<input type="button" value="发送传真" name="B12" onclick="opensubSendfax()"></p>
+
+
+</body>
+
+</html>

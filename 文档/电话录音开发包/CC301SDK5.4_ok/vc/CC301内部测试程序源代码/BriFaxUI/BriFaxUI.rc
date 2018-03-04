@@ -1,0 +1,217 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\BriFaxUI.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,4
+ PRODUCTVERSION 1,0,0,4
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "BriFaxUI DLL\0"
+            VALUE "FileVersion", "1, 0, 0, 4\0"
+            VALUE "InternalName", "BriFaxUI\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2009\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "BriFaxUI.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "BriFaxUI Dynamic Link Library\0"
+            VALUE "ProductVersion", "1, 0, 0, 4\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_RECVFAX_DIALOG DIALOGEX 0, 0, 235, 112
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "接收传真"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,131,96,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "关闭",IDCANCEL,183,95,50,14
+    CTEXT           "",IDC_STSTATE,7,45,221,18,SS_CENTERIMAGE
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,4,89,228,1,
+                    WS_EX_STATICEDGE
+    LTEXT           "文件:",IDC_STATIC,6,12,21,8
+    PUSHBUTTON      "查看",IDC_VIEWRECVFILE,30,26,38,14,WS_DISABLED
+    EDITTEXT        IDC_FILEPATH,29,10,197,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "打开喇叭",IDC_DOPLAY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,97,48,10
+    RTEXT           "00:00:00",IDC_STELAPSE,173,77,58,8,SS_CENTERIMAGE
+    PUSHBUTTON      "打开目录",IDC_OPENDIR,75,26,50,14,WS_DISABLED
+END
+
+IDD_SENDFAX_DIALOG DIALOGEX 0, 0, 235, 115
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "发送传真"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,131,97,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "关闭",IDCANCEL,183,97,50,14
+    LTEXT           "文件:",IDC_STATIC,8,12,21,8
+    PUSHBUTTON      "查看",IDC_VIEWSENDFILE,33,27,42,14
+    CTEXT           "",IDC_SENDSTATE,30,45,181,10,SS_CENTERIMAGE
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,3,90,231,1,
+                    WS_EX_STATICEDGE
+    EDITTEXT        IDC_SENDFILEPATH,33,9,193,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "打开喇叭",IDC_DOPLAY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,97,48,10
+    RTEXT           "00:00:00",IDC_STELAPSE,183,79,48,8,SS_CENTERIMAGE
+    CONTROL         "Progress1",IDC_SENDPROGRESS,"msctls_progress32",0x0,2,
+                    62,231,12
+END
+
+IDD_FAXLOG_DIALOG DIALOG DISCARDABLE  0, 0, 432, 313
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "传真日志"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,327,5,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "关闭",IDCANCEL,379,5,50,14,NOT WS_VISIBLE
+    CONTROL         "List1",IDC_FAXLOGLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,1,25,430,266
+    LTEXT           "开始时间:",IDC_STATIC,6,8,37,8
+    LTEXT           "结束时间:",IDC_STATIC,115,8,37,8
+    CONTROL         "DateTimePicker1",IDC_BEGINDATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,48,5,62,14
+    CONTROL         "DateTimePicker3",IDC_ENDDATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,155,5,61,14
+    PUSHBUTTON      "查找",IDC_SEARCH,219,4,46,14
+    PUSHBUTTON      "首页",IDC_FIRST,2,297,39,14,WS_DISABLED
+    PUSHBUTTON      "上一页",IDC_PREV,47,298,39,14,WS_DISABLED
+    PUSHBUTTON      "下一页",IDC_NEXT,89,298,41,14,WS_DISABLED
+    PUSHBUTTON      "末页",IDC_LAST,134,298,41,14,WS_DISABLED
+    RTEXT           "000/000",IDC_STPAGE,395,299,33,8,SS_CENTERIMAGE
+END
+
+IDD_FAXTOOLTIP_DIALOG DIALOGEX 0, 0, 142, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "传真请求"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "接收",IDOK,37,50,50,14
+    PUSHBUTTON      "取消",IDCANCEL,89,50,50,14
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,0,44,142,1,
+                    WS_EX_STATICEDGE
+    LTEXT           "有传真请求,是否接收?",IDC_STATIC,25,17,87,11
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\BriFaxUI.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

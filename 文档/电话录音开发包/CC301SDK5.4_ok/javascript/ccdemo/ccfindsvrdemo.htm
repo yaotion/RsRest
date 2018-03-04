@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>自动搜索CC内部服务器IP地址演示 1.0</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript>  
+
+function  Sleep(vMilliseconds) 
+{
+	qnviccub.QNV_Tool(QNV_TOOL_SLEEP,vMilliseconds,0,0,0,0);//等待100ms
+}
+
+
+function SetServerAddr(vsvraddr)
+{
+	if(qnviccub.QNV_CCCtrl(QNV_CCCTRL_SETSERVER,vsvraddr,0) <= 0)
+	{
+			AppendStatus("修改服务器IP地址失败");
+	}else
+			AppendStatus("修改服务器IP地址完成,可以重新登陆..");
+}
+
+function FindServerAddr()
+{
+
+}
+
+
+  
+function  GetOwnerCC()
+{
+	return qnviccub.QNV_CCCtrl_CCInfo(QNV_CCCTRL_CCINFO_OWNERCC,'',0,0);
+}
+function GetOwnerNickName()
+{
+	return qnviccub.QNV_CCCtrl_CCInfo(QNV_CCCTRL_CCINFO_NICK,'',0,0);
+}
+
+
+function ExitCCDemo()
+{
+}
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+  
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	var vValue=" type="+uEventType+" Handle="+uHandle+" Result="+uResult+" szdata="+szdata;
+	switch(uEventType)
+	{
+	case BriEvent_CC_ConnectFailed:
+		AppendStatusEx(uID,"连接服务器失败");
+		break;
+	case BriEvent_CC_LoginFailed:
+		AppendStatusEx(uID,"CC登陆失败"+vValue);
+	break;
+	case BriEvent_CC_LoginSuccess:
+		AppendStatusEx(uID,"CC登陆成功"+vValue);
+	break;
+	case BriEvent_CC_FindSuccess:
+	{
+		svraddr.value=T_GetMsgValue(szdata,MSG_KEY_CC);
+		AppendStatusEx(uID,"搜索CC服务器成功"+vValue);
+	}break;
+	case BriEvent_CC_FindFailed:
+	{
+		AppendStatusEx(uID,"搜索CC服务器失败"+vValue);	
+	}break;
+	default:
+		if(uEventType < BriEvent_EndID)
+			AppendStatusEx(uID,"忽略其它事件发生:ID=" + uEventType+ vValue);	
+	break;
+	}	
+}
+  
+</script>   
+  
+<body onload="TV_InitCCModule()" onunload="ExitCCDemo()">
+<SCRIPT LANGUAGE="JavaScript" FOR="qnviccub" EVENT="OnQnvEvent(chID,type,handle,result,param,szdata,szdataex)">
+	T_GetEvent(chID,type,handle,result,szdata)
+</SCRIPT>
+<p>
+<textarea id="StatusArea" rows="24" name="S1" cols="86"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" name="ccocx" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==" width="33" height="33"></object>
+
+<input type="button" value="检查控件是否安装" name="B0" onClick="I_CheckActiveX()"></p>
+<p>
+CC服务器地址:<input type="text" name="T6" ID="svraddr" size="20" value=""></p>
+<p>
+<input type="button" value="设置服务器IP地址" name="B27" onclick="SetServerAddr(svraddr.value)">(不设置服务器地址，就使用默认服务器，该服务器不能注册CC号码)</p>
+<p>
+<input type="button" value="搜索内网服务器IP地址" name="B28" onclick="FindServerAddr()"></p>
+<form method="POST" action="--WEBBOT-SELF--">
+	<!--webbot bot="SaveResults" U-File="fpweb:///_private/form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+	<p>cc号:<input type="text" name="T1" ID="ccid" size="20" value="1004129971204">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 密码:<input type="password" name="T2" ID="ccpwd" size="20" value="111111"></p>
+	<p>
+	<input type="button" value="登陆" name="B16" onclick="TV_LoginCC(ccid.value,ccpwd.value)">
+	<input type="button" value="离线" name="B17" onclick="TV_LogoutCC()">
+</form>
+
+
+</body>
+
+</html>

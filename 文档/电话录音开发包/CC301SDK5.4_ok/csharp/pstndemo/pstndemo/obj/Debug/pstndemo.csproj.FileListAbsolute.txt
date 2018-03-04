@@ -1,0 +1,10 @@
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\obj\Debug\ResolveAssemblyReference.cache
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\obj\Debug\pstndemo.Form1.resources
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\obj\Debug\pstndemo.Properties.Resources.resources
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\obj\Debug\pstndemo.csproj.GenerateResource.Cache
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\bin\Debug\pstndemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\bin\Debug\pstndemo.pdb
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\obj\Debug\pstndemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\pstndemo\pstndemo\obj\Debug\pstndemo.pdb
+E:\Project\Bridge\BriDevice\sdkdemo\bin\pstndemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\bin\pstndemo.pdb

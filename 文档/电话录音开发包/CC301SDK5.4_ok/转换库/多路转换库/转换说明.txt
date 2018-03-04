@@ -1,0 +1,2 @@
+1.把该目录下的bridge.dll/tma4drvm.dll/quviccub.dllL覆盖到原来目录下的tma4drvm.dll
+2.转换库不具有缓冲录音/缓冲放音功能

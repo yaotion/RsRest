@@ -1,0 +1,1 @@
+start installdrv.exe  -autosetup

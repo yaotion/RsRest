@@ -1,0 +1,118 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: qnviccubdemo - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3C.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Release/" /Fp"Release/qnviccubdemo.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\BriWaveFormat.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\Broadcast.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\CCModule.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\ChannelCtrl.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\CheckLine.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\Conference.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\FaxModule.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\FileTransfer.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\InputIP.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\InputRemote.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\InputTTS.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\MediaPlay.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\MediaplayBuf.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\qnvfiletransfer.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\qnviccubdemo.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\qnviccubdemoDlg.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\RecvBroad.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\Remote.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\SelectMultiFile.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\SocketClient.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\SocketUDP.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\Speech.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\Storage.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\Tools.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\WaveFormat.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3C.tmp" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3D.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Release/" /Fp"Release/qnviccubdemo.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\qnviccubdemo\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3D.tmp" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3E.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/qnviccubdemo.pdb" /machine:I386 /out:"../../../bin/qnviccubdemo.exe" 
+".\Release\BriWaveFormat.obj"
+".\Release\Broadcast.obj"
+".\Release\CCModule.obj"
+".\Release\ChannelCtrl.obj"
+".\Release\CheckLine.obj"
+".\Release\Conference.obj"
+".\Release\FaxModule.obj"
+".\Release\FileTransfer.obj"
+".\Release\InputIP.obj"
+".\Release\InputRemote.obj"
+".\Release\InputTTS.obj"
+".\Release\MediaPlay.obj"
+".\Release\MediaplayBuf.obj"
+".\Release\qnvfiletransfer.obj"
+".\Release\qnviccubdemo.obj"
+".\Release\qnviccubdemoDlg.obj"
+".\Release\RecvBroad.obj"
+".\Release\Remote.obj"
+".\Release\SelectMultiFile.obj"
+".\Release\SocketClient.obj"
+".\Release\SocketUDP.obj"
+".\Release\Speech.obj"
+".\Release\StdAfx.obj"
+".\Release\Storage.obj"
+".\Release\Tools.obj"
+".\Release\WaveFormat.obj"
+".\Release\qnviccubdemo.res"
+"\Project\Bridge\BriDevice\sdkdemo\vc\CC301内部测试程序源代码\BriFaxUI\Release\BriFaxUI.lib"
+]
+Creating command line "link.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3E.tmp"
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+BriWaveFormat.cpp
+Broadcast.cpp
+CCModule.cpp
+ChannelCtrl.cpp
+CheckLine.cpp
+Conference.cpp
+FaxModule.cpp
+FileTransfer.cpp
+InputIP.cpp
+InputRemote.cpp
+InputTTS.cpp
+MediaPlay.cpp
+MediaplayBuf.cpp
+qnvfiletransfer.cpp
+qnviccubdemo.cpp
+qnviccubdemoDlg.cpp
+RecvBroad.cpp
+Remote.cpp
+SelectMultiFile.cpp
+SocketClient.cpp
+Generating Code...
+Compiling...
+SocketUDP.cpp
+Speech.cpp
+Storage.cpp
+Tools.cpp
+WaveFormat.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+qnviccubdemo.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

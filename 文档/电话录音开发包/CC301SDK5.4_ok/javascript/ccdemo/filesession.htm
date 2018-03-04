@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>cc文件传输</title>
+</head>
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript> 
+var	vCC,vName,vFileName,vFileSize,vFileHandle,vInit;
+function InitFileSession()
+{
+	vInit=1;
+}
+function ExitFileSession()
+{
+	StopFileSession();
+	window.opener.closeSession(this);
+}
+function SetRecvFileInfo(vHandle,vCC,vName,vFileName,vFileSize)
+{
+	vFileHandle=vHandle;
+	ccid.value=vCC;
+	nick.value=vName;
+	filename.value=vFileName;
+	filesize.value=vFileSize;	
+	qnvfiletransfer1.FT_RecvRequest(vCC,vFileName,vFileSize,QNV_FILETRANS_VER,0,vHandle);
+}
+
+function StartSendFile(vDestCC,vFilePath)
+{	
+	localpath.value = vFilePath;
+    vFileHandle = qnvfiletransfer1.FT_SendRequest(vDestCC,vFilePath,QNV_FILETRANS_VER,0);//QNV_FILETRANS_VER 版本标记，不能修改 
+    //禁止接收/拒接按钮
+    B21.disabled=true;
+    B22.disabled=true;    
+}
+
+function StopFileSession()
+{
+	qnvfiletransfer1.FT_StopFileTrans(0);
+	qnvfiletransfer1.FT_ReleaseSource(0);
+}
+
+function AcceptFileSession()
+{
+	if(localpath.value =='')
+	{
+		alert('请输入本地保存的文件路径');
+		return;
+	}
+	qnvfiletransfer1.FT_ReplyRecvFileRequest(qnvfiletransfer1.FT_GetSID(),localpath.value,0,1);
+}
+
+function RefuseFileSession()
+{
+	qnvfiletransfer1.FT_StopFileTrans(0);
+}
+
+function SelectTransFile()
+{
+	var vFilePath=window.opener.SelectFile(1,vFileName);
+	if(vFilePath != '')
+	{
+		localpath.value = vFilePath;
+	}
+}
+</script>
+
+<body onload="InitFileSession()" onunload="ExitFileSession()">
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 状态:<input type="text" name="T2" ID="ccstatus" size="21"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cc号:<input type="text" name="T1" ID="ccid" size="21"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 昵称:<input type="text" name="T4" ID="nick" size="21"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 文件名:<input type="text" name="T5" ID="filename" size="21"></p>
+<p>&nbsp; 长度(字节):<input type="text" name="T6" ID="filesize" size="21"></p>
+<p>&nbsp;&nbsp;&nbsp; 本地路径:<input type="text" name="T7" ID="localpath" size="67"><input type="button" value="选择文件" name="B25" onclick="SelectTransFile()"></p>
+<p>
+<object classid="clsid:4453740F-D970-4021-89AC-41DC6F704C26" id="qnvfiletransfer1" data="DATA:application/x-oleobject;BASE64,D3RTRHDZIUCJrEHcb3BMJgADAAAfEwAAwAcAAA==
+">
+</object>
+</p>
+<p></p>
+
+<input type="button" value="接收" name="B21" onclick="AcceptFileSession()">
+<input type="button" value="拒绝" name="B22" onclick="RefuseFileSession()">
+<input type="button" value="停止" name="B20" onclick="StopFileSession()"></p>
+
+</body>
+
+</html>

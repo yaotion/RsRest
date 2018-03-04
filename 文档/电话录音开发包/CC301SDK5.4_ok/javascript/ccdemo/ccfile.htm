@@ -1,0 +1,144 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>cc P2P文件传输管理窗口</title>
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+<script   language="javascript"> 
+var vInit;
+var	vSessionArr=new Array();
+function InitFile()
+{
+	window.opener.vFilewin=this;
+	vInit=1;
+}
+
+function ExitFile()
+{
+	window.opener.vFilewin=0;
+	//停止所有呼叫
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		//vSessionArr[i].StopFileSession();
+		vSessionArr[i].close();
+	}	
+}
+
+function AppendFileSession(vCallSession)
+{
+	vSessionArr.push(vCallSession);
+}
+
+function openfilesession()
+{	
+	var vwin=window.open('filesession.htm','','height=500, width=700, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');      		
+   	T_WaitForWin(vwin);
+   	AppendFileSession(vwin);   	
+   	return vwin;
+}
+
+function SelectFile(vtype,vdefaultname)
+{
+	return window.opener.SelectFile(vtype,vdefaultname);
+}
+
+function closefileSession(vHandle)
+{
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		if(vSessionArr[i].vFileHandle == vHandle)
+		{
+			vSessionArr[i].StopFileSession();
+			vSessionArr[i].close();
+			vSessionArr.splice(i,1);
+			break;
+		}
+	}
+	if(vSessionArr.length == 0)//已经没有呼叫了,自动退出本窗口
+		this.close();
+}
+
+function closeSession(vFileSession)
+{
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		if(vSessionArr[i] == vFileSession)
+		{
+			vFileSession.StopFileSession();
+			break;
+		}
+	}
+	if(vSessionArr.length == 0)//已经没有文件传输了,自动退出本窗口
+		this.close();	
+}
+
+function SetSessionStatus(vHandle,vStatus)
+{
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		if(vSessionArr[i].vHandle == vHandle)
+		{
+			vSessionArr[i].SetCallStatus(vStatus);
+			break;
+		}
+	}
+}
+
+function Startfilesession(vDestCC,vFilePath)
+{
+	var vwin=openfilesession();
+	vwin.StartSendFile(vDestCC,vFilePath);
+}
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	var vCC,vName,vFileSize,vFileName;
+	var vValueMsg = szdata.split(MSG_TEXT_SPLIT);
+	if(vValueMsg.length == 0) return;
+	var vParamArr = vValueMsg[0].split(MSG_KEY_SPLIT);	
+	for(var i=0;i<vParamArr.length;i++)  
+	{
+		if(vParamArr[i].indexOf(MSG_KEY_CC) == 0)
+		{
+			vCC=vParamArr[i].substring(MSG_KEY_CC.length,vParamArr[i].length);			
+		}else if(vParamArr[i].indexOf(MSG_KEY_NAME) == 0)
+		{
+			vName =vParamArr[i].substring(MSG_KEY_NAME.length,vParamArr[i].length); 
+		}else if(vParamArr[i].indexOf(MSG_KEY_FILENAME) == 0)
+		{
+			vFileName =vParamArr[i].substring(MSG_KEY_FILENAME.length,vParamArr[i].length); 
+		}else if(vParamArr[i].indexOf(MSG_KEY_FILESIZE) == 0)
+		{
+			vFileSize =vParamArr[i].substring(MSG_KEY_FILESIZE.length,vParamArr[i].length); 
+		}	
+  	}
+	switch(uEventType)
+	{
+	case BriEvent_CC_RecvFile:
+		var vwin=openfilesession(uHandle,vCC,vName,vFileName,vFileSize);
+	   	vwin.SetRecvFileInfo(uHandle,vCC,vName,vFileName,vFileSize);   		
+	break;
+	case BriEvent_CC_TransFileFinished:
+		alert('传输文件结束,准备关闭传输窗口');
+		closefileSession(uHandle);
+	break;
+	default:break;	
+	}
+}
+
+</script>
+
+
+</head>
+<body  onload="InitFile()" onunload="ExitFile()">
+
+<p>
+
+文件传输管理窗口..</p>
+
+</body>
+
+</html>
+

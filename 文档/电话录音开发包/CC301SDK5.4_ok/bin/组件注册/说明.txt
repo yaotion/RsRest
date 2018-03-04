@@ -1,0 +1,4 @@
+reg2currentpath.bat:在当前目录注册qnviccub.dll
+reg2system32.bat:在系统目录注册qnviccub.dll
+unreg.bat:反注册qnviccub.dll
+regfile2currentpath.bat:在当前目录注册qnvfiletrans.dll,使用P2P文件传输时需要使用该模块

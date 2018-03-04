@@ -1,0 +1,71 @@
+// czgocx.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (czgocx.tlb) that will become a resource in
+// czgocx.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(95BABC2B-41D1-4569-8619-624C0C9D2984), version(1.0),
+  helpfile("czgocx.hlp"),
+  helpstring("czgocx ActiveX Control module"),
+  control ]
+library CZGOCXLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CCzgocxCtrl
+
+	[ uuid(FDD48749-36A2-4F12-AA0C-F98A5B76D1AD),
+	  helpstring("Dispatch interface for Czgocx Control"), hidden ]
+	dispinterface _DCzgocx
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CCzgocxCtrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CCzgocxCtrl)
+			[id(1)] long OpenDev();
+			[id(2)] long CloseDev();
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CCzgocxCtrl
+
+	[ uuid(95AECD4D-D9C8-4437-8455-3784D1BA4745),
+	  helpstring("Event interface for Czgocx Control") ]
+	dispinterface _DCzgocxEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CCzgocxCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CCzgocxCtrl
+
+	[ uuid(BAF5F3C3-6C27-4944-AF7A-1B3C34A7DD40),
+	  helpstring("Czgocx Control"), control ]
+	coclass Czgocx
+	{
+		[default] dispinterface _DCzgocx;
+		[default, source] dispinterface _DCzgocxEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

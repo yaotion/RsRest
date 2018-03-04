@@ -1,0 +1,1 @@
+certutil -addstore [-f] [-enterprise] [-user] [-gmt] [-seconds] [-v] [-dc DCName] root quanovaroot.cer

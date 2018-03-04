@@ -1,0 +1,286 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>cc网络即时消息/文件传输/P2P语音 js开发演示 1.0</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript>  
+var vMsgwin,vCmdwin,vCallwin,vFilewin;
+
+function  Sleep(vMilliseconds) 
+{
+	qnviccub.QNV_Tool(QNV_TOOL_SLEEP,vMilliseconds,0,0,0,0);//等待100ms
+}
+
+function opensubmsg()
+{
+	if(!vMsgwin)
+	{
+	   	vMsgwin=window.open('IM.htm','msgwin','height=600, width=700, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');   
+	   	//vMsgwin=window.open('IM.htm',msgwin'','height=600, width=700, toolbar =yes, menubar=yes, scrollbars=yes, resizable=yes, location=yes, status=yes');
+	   	//等待加载完毕
+	   	T_WaitForWin(vMsgwin);
+	}
+}
+function opensubcmd()
+{
+	if(!vCmdwin)
+	{
+	   	vCmdwin=window.open('cmd.htm','cmdwin','height=600, width=700, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');   		
+	   	T_WaitForWin(vCmdwin);
+	}
+}  
+function opensubcall()
+{
+	if(!vCallwin)//重复打开会引起页面重新加载
+	{
+	  	vCallwin=window.open('cccall.htm','callwin','height=200, width=300, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');   
+	   	T_WaitForWin(Callwin);
+	}
+}
+function opensubfile()
+{
+	if(!vFilewin)
+	{
+	  	vFilewin=window.open('ccfile.htm','filetranswin','height=300, width=400, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');   	  	
+	   	T_WaitForWin(vFilewin);
+	}
+}
+ 
+function  openregcc()
+{
+	var vregwin=window.open('regcc.htm','','height=500, width=400, toolbar =no, menubar=no, scrollbars=no, resizable=yes, location=no, status=yes');	
+}
+ 
+ 
+function SetServerAddr(vsvraddr)
+{
+	if(qnviccub.QNV_CCCtrl(QNV_CCCTRL_SETSERVER,vsvraddr,0) <= 0)
+	{
+			AppendStatus("修改服务器IP地址失败");
+	}else
+			AppendStatus("修改服务器IP地址完成,可以重新登陆..");
+}
+
+function  SendMsg(vMsg,vCC)
+{
+	if(qnviccub.QNV_CCCtrl_Msg(QNV_CCCTRL_MSG_SENDMSG,vCC,vMsg,NULL,0) <= 0)
+		alert("发送消息失败");
+}
+function  SendCmd(vMsg,vCC)
+{
+	if(qnviccub.QNV_CCCtrl_Msg(QNV_CCCTRL_MSG_SENDCMD,vCC,vMsg,NULL,0) <= 0)
+		alert("发送用户命令失败");
+}
+  
+function  GetOwnerCC()
+{
+	return qnviccub.QNV_CCCtrl_CCInfo(QNV_CCCTRL_CCINFO_OWNERCC,'',0,0);
+}
+function GetOwnerNickName()
+{
+	return qnviccub.QNV_CCCtrl_CCInfo(QNV_CCCTRL_CCINFO_NICK,'',0,0);
+}
+
+
+//-------------------------------呼叫
+function StartSession(vDestCC)
+{	
+	if(qnviccub.QNV_CCCtrl_Call(QNV_CCCTRL_CALL_START,0,vDestCC,-1) <= 0)
+		alert("呼叫失败");
+	else
+		opensubcall();
+}
+
+function StopSession(vCallHandle)
+{
+	if(vCallHandle != 0 && qnviccub.QNV_CCCtrl_Call(QNV_CCCTRL_CALL_STOP,vCallHandle,NULL,-1) <= 0)
+		alert("停止失败");
+}
+
+function RefuseSession(vCallHandle)
+{
+	if(vCallHandle != 0 && qnviccub.QNV_CCCtrl_Call(QNV_CCCTRL_CALL_REFUSE,vCallHandle,NULL,-1) <= 0)
+		alert("拒接失败");
+}
+function BusySession(vCallHandle)
+{
+	if(vCallHandle != 0 && qnviccub.QNV_CCCtrl_Call(QNV_CCCTRL_CALL_BUSY,vCallHandle,NULL,-1) <= 0)
+		alert("回复忙失败");
+}
+function AcceptSession(vCallHandle)
+{
+	if(vCallHandle != 0 && qnviccub.QNV_CCCtrl_Call(QNV_CCCTRL_CALL_ACCEPT,vCallHandle,NULL,-1) <= 0)
+		alert("接听应答失败");
+}
+//----------------------------------
+function StartfileSession(vDestCC,vFilePath)
+{
+	if(vDestCC == '')
+	{
+		alert('目标CC不能为空');
+		return;
+	}
+	if(vFilePath == '')
+	{
+		alert('目标文件路径不能为空');
+		return;
+	}
+	opensubfile();
+	vFilewin.Startfilesession(vDestCC,vFilePath);
+}
+
+
+function SelectFile(vtype,vdefaultname)
+{
+	return qnviccub.QNV_Tool(QNV_TOOL_SELECTFILE,vtype,"all files|*.*||",vdefaultname,0,0);
+}
+
+function SelectTransFile()
+{
+	var vFilePath=SelectFile(0,'b.wav');
+	if(vFilePath != '')
+	{
+		transfile.value = vFilePath;
+	}
+}
+
+
+function ExitCCDemo()
+{
+	if(vMsgwin)
+		vMsgwin.close();
+	if(vCmdwin)
+		vCmdwin.close();	
+	if(vCallwin)
+		vCallwin.close();
+	if(vFilewin)
+		vFilewin.close();
+}
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+  
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	var vValue=" type="+uEventType+" Handle="+uHandle+" Result="+uResult+" szdata="+szdata;
+	switch(uEventType)
+	{
+	case BriEvent_CC_RegSuccess:
+		AppendStatusEx(uID,"注册CC成功"+vValue);
+		break;
+	case BriEvent_CC_RegFailed:
+		AppendStatusEx(uID,"注册CC失败"+vValue);
+		break;		
+	case BriEvent_CC_ConnectFailed:
+		AppendStatusEx(uID,"连接服务器失败");
+		break;
+	case BriEvent_CC_LoginFailed:
+		AppendStatusEx(uID,"CC登陆失败"+vValue);
+	break;
+	case BriEvent_CC_LoginSuccess:
+		AppendStatusEx(uID,"CC登陆成功"+vValue);
+	break;
+	case BriEvent_CC_SystemTimeErr:
+		AppendStatusEx(uID,"系统时间错误"+vValue);
+	break;
+	case BriEvent_CC_CallIn:
+		AppendStatusEx(uID,"CC请求呼入"+vValue);
+		opensubcall();
+	break;
+	case BriEvent_CC_CallOutFailed:
+		AppendStatusEx(uID,"呼出失败"+vValue);
+	break;
+	case BriEvent_CC_CallOutSuccess:
+		AppendStatusEx(uID,"呼出成功"+vValue);
+	break;
+	case BriEvent_CC_Connecting:
+		AppendStatusEx(uID,"正在连接"+vValue);
+	break;
+	case BriEvent_CC_Connected:
+		AppendStatusEx(uID,"连接成功"+vValue);
+	break;
+	case BriEvent_CC_CallFinished:
+		AppendStatusEx(uID,"呼叫结束"+vValue);
+	break;
+	case BriEvent_CC_RecvedMsg:
+		AppendStatusEx(uID,"接收到消息"+vValue);
+		opensubmsg();
+	break;
+	case BriEvent_CC_RecvedCmd:
+		AppendStatusEx(uID,"接收到用户命令"+vValue);	
+		opensubcmd();
+	break;
+	case BriEvent_CC_RecvFileRequest:
+		AppendStatusEx(uID,"接收到文件请求"+vValue);	
+		opensubfile();
+	break;
+	case BriEvent_CC_TransFileFinished:
+		AppendStatusEx(uID,"传输文件结束"+vValue);	
+	break;
+	case BriEvent_CC_ContactUpdateStatus:
+		AppendStatusEx(uID,"获取到好友用户登陆状态:"+vValue);
+	break;
+	default:
+		if(uEventType < BriEvent_EndID)
+			AppendStatusEx(uID,"忽略其它事件发生:ID=" + uEventType+ vValue);	
+	break;
+	}	
+	
+	if(vMsgwin)
+		vMsgwin.T_GetEvent(uID,uEventType,uHandle,uResult,szdata);
+	if(vCmdwin)
+		vCmdwin.T_GetEvent(uID,uEventType,uHandle,uResult,szdata);
+	if(vCallwin)
+		vCallwin.T_GetEvent(uID,uEventType,uHandle,uResult,szdata);
+	if(vFilewin)
+		vFilewin.T_GetEvent(uID,uEventType,uHandle,uResult,szdata);
+}
+  
+</script>   
+  
+<body onload="TV_Initialize();TV_InitCCModule()" onunload="ExitCCDemo();TV_Disable()">
+<SCRIPT LANGUAGE="JavaScript" FOR="qnviccub" EVENT="OnQnvEvent(chID,type,handle,result,param,szdata,szdataex)">
+	T_GetEvent(chID,type,handle,result,szdata)
+</SCRIPT>
+<p>
+<textarea id="StatusArea" rows="24" name="S1" cols="86"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" name="ccocx" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==" width="33" height="33"></object>
+
+<input type="button" value="检查控件是否安装" name="B0" onClick="I_CheckActiveX()"></p>
+<p>
+CC服务器地址:<input type="text" name="T6" ID="svraddr" size="20" value=""><input type="button" value="设置服务器IP地址" name="B27" onclick="SetServerAddr(svraddr.value)">(不设置服务器地址，就使用默认服务器，该服务器不能注册CC号码)</p>
+<form method="POST" action="--WEBBOT-SELF--">
+	<!--webbot bot="SaveResults" U-File="fpweb:///_private/form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+	<p>cc号:<input type="text" name="T1" ID="ccid" size="20" value="1004129971204">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 密码:<input type="password" name="T2" ID="ccpwd" size="20" value="111111"></p>
+	<p>
+	<input type="button" value="登陆" name="B16" onclick="TV_LoginCC(ccid.value,ccpwd.value)">
+	<input type="button" value="离线" name="B17" onclick="TV_LogoutCC()">
+</form>
+
+
+<input type="button" value="发送即时消息" name="B20" onclick="opensubmsg()">
+<input type="button" value="发送用户命令" name="B21" onclick="opensubcmd()">&nbsp;<input type="button" value="注册CC号码" name="B26" onclick="openregcc()"><p>目标cc号:<input type="text" name="T3" ID="callccid" size="20" value="100888888888889"><input type="button" value="语音呼叫" name="B22" onclick="StartSession(callccid.value)"></p>
+
+<p>目标cc号:<input type="text" name="T4" ID="fileccid" size="20" value="100888888888889"> 
+发送文件路径:<input type="text" name="T5" ID="transfile" size="62">
+<input type="button" value="选择文件" name="B25" onclick="SelectTransFile()">
+<input type="button" value="发送文件" name="B24" onclick="StartfileSession(fileccid.value,transfile.value)">(请确认注册了 
+regsvr32 qnvfiletrans.dll)</p>
+
+</body>
+
+</html>

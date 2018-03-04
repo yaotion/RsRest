@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>正在安装驱动</title>
+</head>
+<script type="text/javascript">
+function icc301_func(vcmd,vtype)
+{	
+	if(vcmd == "text")
+	{
+		if(vtype == "title") return "安装设备驱动";
+		else if(vtype == "finish") return "安装驱动完成";
+		else if(vtype == "caption") return "完成";
+		else if(vtype == "wizard") return "no";
+		else if(vtype == "disablesign") return "设备在64位系统下运行可能需要关闭数字签名强制.\r\n[关闭后需要重新启动系统才能生效]\r\n\r\n是否要立即关闭数字签名?";//force
+		else if(vtype == "spc") return "enable";
+		else if(vtype == "reboot") return "要正常使用设备，可能需要重新启动系统.\r\n\r\n是否要立即重启系统？";
+		else return "";
+	}else
+	{
+	  return "";
+	}
+}
+</script>
+
+<body style="border:0px;" scroll="no">
+
+<table border="0" width="100%" id="table1" height="100%">
+	<tr>
+		<td>
+		<p align="center">
+		<img border="0" src="loading.gif" width="32" height="32"><p align="center">正在安装驱动,请稍候...</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

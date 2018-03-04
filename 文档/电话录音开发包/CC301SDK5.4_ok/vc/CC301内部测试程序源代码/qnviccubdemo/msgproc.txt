@@ -1,0 +1,114 @@
+
+#define		BRI_BASEID_MESSAGE				(WM_USER+400)
+
+#define		BRI_PHONEHOOK_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_PhoneHook)
+#define		BRI_PHONEHANG_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_PhoneHang)
+#define		BRI_CALLIN_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_CallIn)
+#define		BRI_GETCALLID_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_GetCallID)
+#define		BRI_STOPCALLIN_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_StopCallIn)
+#define		BRI_DIALEND_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_DialEnd)
+#define		BRI_PLAYFILEEND_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_PlayFileEnd)
+#define		BRI_PLAYMULTIFILEEND_MESSAGE	(BRI_BASEID_MESSAGE+BriEvent_PlayMultiFileEnd)
+#define		BRI_PLAYSTRINGEND_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_PlayStringEnd)
+#define		BRI_REPLYPLAYFILE_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_ReplyPlayFile)
+#define		BRI_SENDCALLIDEND_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_SendCallIDEnd)
+#define		BRI_RINGTIMEOUT_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_PingTimeout)
+#define		BRI_RINGING_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_Ringing)
+#define		BRI_SILENCE_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_Silence)
+#define		BRI_GETDTMFCHAR_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_GetDTMFChar)
+#define		BRI_REMOTEHOOK_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_RemoteHook)
+#define		BRI_REMOTEHANG_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_RemoteHang)
+#define		BRI_BUSY_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_Busy)
+#define		BRI_DIALTONE_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_DialTone)
+#define		BRI_PHONEDIAL_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_PhoneDial)
+#define		BRI_RINGBACK_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_RingBack)
+#define		BRI_MICIN_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_MicIn)
+#define		BRI_MICOUT_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_MicOut)
+#define		BRI_FLASHEND_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_FlashEnd)
+#define		BRI_REFUSEEND_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_RefuseEnd)
+#define		BRI_SPEECHRESULT_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_SpeechResult)
+#define		BRI_REMOTEDISCONNECT_MESSAGE	(BRI_BASEID_MESSAGE+BriEvent_RemoteDisconnect)
+#define		BRI_FAXRECVFINISHED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_FaxRecvFinished)
+#define		BRI_FAXRECVFAILED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_FaxRecvFailed)
+#define		BRI_FAXSENDFINISHED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_FaxSendFinished)
+#define		BRI_FAXSENDFAILED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_FaxSendFailed)
+#define		BRI_OPENSOUNDFAILED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_OpenSoundFailed)
+#define		BRI_UPLOADSUCCESS_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_UploadSuccess)
+#define		BRI_UPLOADFAILED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_UploadFailed)
+
+#define		BRI_ENABLEHOOK_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_EnableHook)
+#define		BRI_ENABLEPLAY_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_EnablePlay)
+#define		BRI_ENABLEMIC_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_EnableMic)
+#define		BRI_ENABLESPK_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_EnableSpk)
+#define		BRI_ENABLERING_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_EnableRing)
+#define		BRI_DORECSOURCE_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_DoRecSource)
+#define		BRI_DOSTARTDIAL_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_DoStartDial)
+
+#define		BRI_RECVEDFSK_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_RecvedFSK)
+#define		BRI_RECBUF_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_RecBuf)//录音缓冲回调
+#define		BRI_DEVERR_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_DevErr)//设备错误
+
+
+#define		BRI_CC_LOGINFAILED_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_CC_LoginFailed)
+#define		BRI_CC_LOGINNSUCCESS_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_CC_LoginSuccess)
+#define		BRI_CC_SYSTEMTIMEERR_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_CC_SystemTimeErr)
+#define		BRI_CC_CALLIN_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_CC_CallIn)
+#define		BRI_CC_CALLOUTFAILED_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_CC_CallOutFailed)
+#define		BRI_CC_CALLOUTSUCCESS_MESSAGE		(BRI_BASEID_MESSAGE+BriEvent_CC_CallOutSuccess)
+#define		BRI_CC_CONNECTING_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_CC_Connecting)
+#define		BRI_CC_CONNECTED_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_CC_Connected)
+#define		BRI_CC_CALLFINISHED_MESSAGE			(BRI_BASEID_MESSAGE+BriEvent_CC_CallFinished)
+
+//END 
+#define		BRI_ENDID_MESSAGE				(BRI_BASEID_MESSAGE+BriEvent_EndID)//最大消息ID
+	/*
+	if(message > BRI_BASEID_MESSAGE && message < BRI_ENDID_MESSAGE)
+	{
+		long lResult=QNV_Tool(QNV_TOOL_LOWINT16,(DWORD)wParam,NULL,NULL,NULL,0);
+		CString str;
+		switch(message)
+		{
+		case BRI_PHONEHOOK_MESSAGE:str.Format("通道%d: 电话机摘机 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_PHONEHANG_MESSAGE:str.Format("通道%d: 电话机挂机 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_CALLIN_MESSAGE:str.Format("通道%d: 来电响铃 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_GETCALLID_MESSAGE:str.Format("通道%d: 接收到来电号码 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_STOPCALLIN_MESSAGE:str.Format("通道%d: 停止呼入，产生一个未接电话 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_DIALEND_MESSAGE:str.Format("通道%d: 拨号结束 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_PLAYFILEEND_MESSAGE:str.Format("通道%d: 播放文件结束 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_PLAYMULTIFILEEND_MESSAGE:str.Format("通道%d: 多文件连播结束 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_REPLYPLAYFILE_MESSAGE:str.Format("通道%d: 循环播放文件 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_PLAYSTRINGEND_MESSAGE:str.Format("通道%d: 播放字符结束 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_SENDCALLIDEND_MESSAGE:str.Format("通道%d: 给话机震铃时发送号码结束 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_SILENCE_MESSAGE:str.Format("通道%d: 通话中一定时间的静音 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_GETDTMFCHAR_MESSAGE:str.Format("通道%d: 接收到按键 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_REMOTEHOOK_MESSAGE:str.Format("通道%d: 远程摘机 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_REMOTEHANG_MESSAGE:str.Format("通道%d: 远程挂机 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_BUSY_MESSAGE:str.Format("通道%d: 接收到忙音,线路已经断开 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_DIALTONE_MESSAGE:str.Format("通道%d: 检测到拨号音 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_PHONEDIAL_MESSAGE:str.Format("通道%d: 电话机拨号 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_RINGBACK_MESSAGE:str.Format("通道%d: 拨号后接收到回铃音 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_MICIN_MESSAGE:str.Format("通道%d: 麦克风插入 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_MICOUT_MESSAGE:str.Format("通道%d: 麦克风拔出 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_FLASHEND_MESSAGE:str.Format("通道%d: 拍插簧完成 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_FAXRECVFINISHED_MESSAGE:str.Format("通道%d: 接收传真完成 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_FAXRECVFAILED_MESSAGE:str.Format("通道%d: 接收传真失败 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_FAXSENDFINISHED_MESSAGE:str.Format("通道%d: 发送传真完成 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_FAXSENDFAILED_MESSAGE:str.Format("通道%d: 发送传真失败 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;
+		case BRI_REFUSEEND_MESSAGE:str.Format("通道%d: 拒接来电完成 lResult=%d szData=%s",m_nChannelID+1,lResult,(LPCTSTR)lParam);break;		
+		case BRI_DEVERR_MESSAGE:str.Format("通道%d: 设备发生错误！原因=%s(%d/%d) lResult=%d szData=%s",m_nChannelID+1,GetDevErrStr(lResult),(atol((LPCTSTR)lParam)&0xFF00)>>8,(atol((LPCTSTR)lParam)&0xFF),lResult,(LPCTSTR)lParam);break;
+		case BRI_ENABLEHOOK_MESSAGE:
+			{
+				((CButton*)GetDlgItem(IDC_ENABLEHOOK))->SetCheck(lResult);
+				str.Format("通道%d: HOOK 被控制 lResult=%d",m_nChannelID+1,lResult);
+				break;
+			}
+		case BRI_RECBUF_MESSAGE:AppendRecBuf((short*)lParam,(long)wParam);break;
+		default:break;
+		}
+		if(!str.IsEmpty())
+		{
+			::SendMessage(GetParent()->GetSafeHwnd(),QNV_CHANNEL_MESSAGE,CB_APPENDSTATUS,(LPARAM)(LPCTSTR)str);
+		}
+		return  TRUE;
+	}
+	*/

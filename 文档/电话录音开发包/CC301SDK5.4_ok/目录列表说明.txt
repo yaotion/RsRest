@@ -1,0 +1,10 @@
+bin:所有库文件和demo程序
+ccdemo:CC网络通信服务开发结构演示(即时消息/语音/文件传输)
+faxdemo:使用设备控制演示传真收发
+pstndemo:设备通用功能演示(拨号/接听/放音/录音等)
+conferencedemo:会议演示
+ccagte:CC网关演示(PSTN呼入转远程CC/CC呼入转PSTN固话手机/远程PSTN代拨通话)
+pc2pstn:演示如何用接在计算机声卡上的耳机进行PSTN通话
+javascript:b/s模式 WEB模式 应用的js脚本开发演示
+driver:驱动程序
+玻瑞器转换库:已经开发好的玻瑞器单路应用程序,可以重新安装驱动后，替换该DLL后不修改程序就可以直接使用cc301的部分功能(原有玻瑞器的功能)。

@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>CC号码注册演示</title>
+</head>
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript>  
+function InitReg()
+{
+	if(qnviccub.QNV_Attach(0) <= 0)
+	{
+		alert('绑定失败');
+	}
+}
+
+function RegCC(szcc,szpwd,sznick,szsvrid)
+{
+	if(szcc== '')
+	{
+		alert('CC号码不能为空');
+		return;	
+	}
+	if(szcc.indexOf(',') >= 0)
+	{
+		alert('CC不能有逗号');
+		return ;
+	}
+	if(szpwd== '')
+	{
+		alert('密码不能为空');
+		return;
+	}
+	if(szpwd.indexOf(',') >= 0)
+	{
+		alert('密码不能有逗号');
+		return ;
+	}
+	if(sznick== '')
+	{
+		alert('昵称不能为空');
+		return;
+	}
+	if(sznick.indexOf(',') >= 0)
+	{
+		alert('昵称不能有逗号');
+		return ;
+	}
+	if(szsvrid== '')
+	{
+		alert('服务器ID不能为空');
+		return;
+	}
+	if(szsvrid.indexOf(',') >= 0)
+	{
+		alert('服务器ID不能有逗号');
+		return ;
+	}
+	//','分隔
+	var vRegValue=szcc+","+szpwd+","+sznick+","+szsvrid;
+	var vRet=qnviccub.QNV_CCCtrl(QNV_CCCTRL_REGCC,vRegValue,0);
+	if(vRet <= 0)
+	{
+		alert('注册失败 value='+vRegValue+' ret='+vRet);
+	}else
+		close();
+}
+
+</script>
+
+<body onload = "InitReg()">
+
+<p>&nbsp;&nbsp;&nbsp; CC号：<input type="text" name="T1" ID="ccid" size="20" value=""></p>
+<p>&nbsp;&nbsp;&nbsp; 密码：<input type="text" name="T1" ID="ccpwd" size="20" value=""></p>
+<p>&nbsp;&nbsp;&nbsp; 呢称：<input type="text" name="T1" ID="nick" size="20" value=""></p>
+<p>服务器ID：<input type="text" name="T1" ID="svrid" size="20" value=""></p>
+<p><b>如何获取服务器ID：</b></p>
+<p>1.先知道设备的IP</p>
+<p>2.在IE输入http://设备的IP:8000</p>
+<p>3.登录管理界面</p>
+<p>4.找到运行参数设置界面，在这里找到&quot;服务器注册校验ID&quot;设置</p>
+
+<p>
+	<input type="button" value="注册" name="B16" onclick="RegCC(ccid.value,ccpwd.value,nick.value,svrid.value)"></p>
+<p>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" name="ccocx" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==" width="33" height="33"></object>
+
+</p>
+<p>　</p>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+TelMateDemo.exe 为老版本玻瑞器demo
+qnviccubdemo.exe 为新版本demo,可以演示CC301芯片的所有功能
+
+二次开发者要不改动原来程序直接使用CC301盒子，请复制该目录的所有DLL，替换到老的tma4drv.dll
+
+mic.jpg为mic通话状态图。
+启动后打开设备
+拨号
+打开3个红色选择的开关,其它可以都保持为默认状态

@@ -1,0 +1,51 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ConferenceDemo - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Release/ConferenceDemo.res" /d "NDEBUG" /d "_AFXDLL" "E:\Project\Bridge\BriDevice\sdkdemo\vc\conferencedemo\ConferenceDemo.rc"" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3A.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/ConferenceDemo.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\conferencedemo\ConferenceDemo.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\conferencedemo\ConferenceDemoDlg.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\conferencedemo\CreateConf.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3A.tmp" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3B.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/ConferenceDemo.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\conferencedemo\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3B.tmp" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3C.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/ConferenceDemo.pdb" /machine:I386 /out:"../../bin/ConferenceDemo.exe" 
+.\Release\ConferenceDemo.obj
+.\Release\ConferenceDemoDlg.obj
+.\Release\CreateConf.obj
+.\Release\StdAfx.obj
+.\Release\ConferenceDemo.res
+]
+Creating command line "link.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP3C.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+ConferenceDemo.cpp
+ConferenceDemoDlg.cpp
+CreateConf.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+ConferenceDemo.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: dialout - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Release/dialout.res" /d "NDEBUG" /d "_AFXDLL" "E:\Project\Bridge\BriDevice\sdkdemo\vc\dialout\dialout.rc"" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP365.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/dialout.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\dialout\dialoutDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP365.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:no /pdb:"Release/dialout.pdb" /machine:I386 /out:"../../bin/dialout.exe"  .\Release\dialout.obj .\Release\dialoutDlg.obj .\Release\StdAfx.obj .\Release\dialout.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+dialoutDlg.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+dialout.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

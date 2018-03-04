@@ -1,0 +1,411 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ccdemo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\ccdemo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 ccdemo"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "ccdemo 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2009",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_CCDEMO_DIALOG DIALOGEX 0, 0, 346, 257
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "cc网络即时消息/文件传输/P2P语音 vc开发演示1.1"
+MENU IDR_MENU1
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "关闭",IDCANCEL,296,241,50,14
+    EDITTEXT        IDC_CCSTATUS,0,1,345,233,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+END
+
+IDD_CCMSG_DIALOG DIALOG DISCARDABLE  0, 0, 349, 216
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CC消息"
+FONT 9, "宋体"
+BEGIN
+    LTEXT           "消息内容：",IDC_STATIC,6,155,41,8
+    EDITTEXT        IDC_CCSENDVIEW,6,167,289,42,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL
+    PUSHBUTTON      "发送",IDC_SENDMSG,298,166,48,42
+    EDITTEXT        IDC_CCRECVVIEW,5,2,340,146,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "目标CC:",IDC_STATIC,161,154,29,8
+    EDITTEXT        IDC_DESTCC,192,151,102,14,ES_AUTOHSCROLL
+END
+
+IDD_CCCMD_DIALOG DIALOG DISCARDABLE  0, 0, 351, 214
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CC用户自定义命令"
+FONT 9, "宋体"
+BEGIN
+    LTEXT           "命令内容：",IDC_STATIC,6,155,41,8
+    EDITTEXT        IDC_CCSENDCMD,6,167,289,42,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | WS_VSCROLL
+    PUSHBUTTON      "发送",IDC_SENDCMD,298,166,48,42
+    EDITTEXT        IDC_CCRECVCMD,5,2,340,146,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    LTEXT           "目标CC:",IDC_STATIC,89,154,29,8
+    EDITTEXT        IDC_DESTCC,121,151,91,14,ES_AUTOHSCROLL
+    CONTROL         "对方不在线时自动保存在服务器",IDC_AUTOSAVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,215,153,128,10
+END
+
+IDD_REGCC_DIALOG DIALOG DISCARDABLE  0, 0, 302, 210
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "注册CC号"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_REGCCNUM,56,25,100,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_REGPWD,56,45,100,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_REGNICK,56,65,100,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SVRID,56,85,101,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "注册",IDC_REG,55,165,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,245,191,50,14
+    GROUPBOX        "注册",IDC_STATIC,6,7,292,180
+    LTEXT           "CC号:",IDC_STATIC,30,27,21,8
+    LTEXT           "密码:",IDC_STATIC,30,47,21,8
+    LTEXT           "昵称:",IDC_STATIC,30,67,21,8
+    LTEXT           "服务器ID:",IDC_STATIC,15,88,37,8
+    LTEXT           "如何获取服务器ID\r\n1.先知道设备的IP\r\n2.在IE输入http://设备的IP:8000\r\n3.登录管理界面\r\n4.找到运行参数设置界面，在这里找到""服务器注册校验ID""设置",
+                    IDC_STATIC,56,112,234,46
+    LTEXT           "1.如果使用公网测试，不支持注册功能.\r\n2.如果使用内网请先设置已安装内网服务器的IP地址",
+                    IDC_STATIC,163,23,132,46
+END
+
+IDD_LOGINCC_DIALOG DIALOG DISCARDABLE  0, 0, 166, 115
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "登陆CC"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_CCNUMBER,42,45,102,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CCPWD,42,67,102,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "登陆",IDC_LOGON,42,89,49,14
+    PUSHBUTTON      "取消",IDCANCEL,95,89,50,14
+    GROUPBOX        "登陆",IDC_STATIC,4,31,157,79
+    LTEXT           "CC：",IDC_STATIC,20,49,17,8
+    LTEXT           "密码：",IDC_STATIC,14,69,25,8
+    LTEXT           "(如果使用公网测试，请先从本公司网站的数据中心下载CC商务终端注册CC号码)",
+                    IDC_STATIC,5,4,156,17
+END
+
+IDD_INPUTSVRIP_DIALOG DIALOG DISCARDABLE  0, 0, 227, 110
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "输入内部服务器IP"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_SVRIP,85,17,88,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,117,91,50,14
+    PUSHBUTTON      "取消",IDCANCEL,173,91,50,14
+    LTEXT           "内网CC服务器IP地址:",IDC_STATIC,7,19,77,8
+    LTEXT           "(如果没有输入IP,系统自动设置为默认测试服务器地址,该服务器不能被注册 CC,请本公司网站下载安装CC商务终端注册CC号码",
+                    IDC_STATIC,86,37,130,39
+    GROUPBOX        "",IDC_STATIC,1,0,224,82
+END
+
+IDD_CCCALL_DIALOG DIALOG DISCARDABLE  0, 0, 388, 288
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "呼叫"
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "关闭",IDCANCEL,335,270,50,14
+    CONTROL         "List1",IDC_CALLLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,2,0,382,108
+    EDITTEXT        IDC_CALLSTATUS,2,149,383,117,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL | 
+                    WS_HSCROLL
+    PUSHBUTTON      "接听",IDC_ANSWER,3,111,39,14
+    PUSHBUTTON      "拒接",IDC_REFUSE,44,111,42,14
+    PUSHBUTTON      "回复忙",IDC_BUSY,87,111,46,14
+    PUSHBUTTON      "停止",IDC_STOP,135,111,46,14
+    PUSHBUTTON      "播放语音(8K/16位wav)",IDC_STARTPLAYFILE,241,112,82,14
+    PUSHBUTTON      "停止播放语音",IDC_STOPPLAYFILE,326,111,57,14
+    PUSHBUTTON      "开始文件录音",IDC_STARTRECORDFILE,241,131,82,14
+    PUSHBUTTON      "停止文件录音",IDC_STOPFILERECORD,327,131,55,14
+    PUSHBUTTON      "保持通话",IDC_HOLD,4,132,50,14
+    PUSHBUTTON      "恢复通话",IDC_UNHOLD,56,132,50,14
+    PUSHBUTTON      "呼叫转移",IDC_SWITCH,184,111,50,14
+END
+
+IDD_INPUTCC_DIALOG DIALOG DISCARDABLE  0, 0, 172, 86
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "输入CC号"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_CC,55,23,98,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,67,67,50,14
+    PUSHBUTTON      "取消",IDCANCEL,119,67,50,14
+    GROUPBOX        "",IDC_STATIC,2,1,167,60
+    LTEXT           "目标CC号：",IDC_STATIC,11,26,41,8
+END
+
+IDD_SENDFILE_DIALOG DIALOG DISCARDABLE  0, 0, 303, 100
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "发送文件"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_DESTCC,53,21,92,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FIELPATH,53,49,185,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "选择文件",IDC_SELECTFILE,240,48,50,14
+    DEFPUSHBUTTON   "确定",IDOK,197,83,50,14
+    PUSHBUTTON      "取消",IDCANCEL,250,83,50,14
+    LTEXT           "文件路径：",IDC_STATIC,7,51,41,8
+    LTEXT           "对方CC：",IDC_STATIC,15,24,33,8
+    GROUPBOX        "发送文件",IDC_STATIC,2,3,300,76
+END
+
+IDD_RECVFILE_DIALOG DIALOG DISCARDABLE  0, 0, 165, 88
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "接收文件"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,56,67,50,14
+    PUSHBUTTON      "取消",IDCANCEL,110,67,50,14
+    CTEXT           "是否接收?",IDC_STATIC,15,30,123,8,SS_CENTERIMAGE
+    GROUPBOX        "有文件请求",IDC_STATIC,1,2,159,60
+END
+
+IDD_FILETRANS_DIALOG DIALOG DISCARDABLE  0, 0, 424, 290
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "文件传输列表"
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "关闭",IDCANCEL,371,274,50,14
+    CONTROL         "List1",IDC_FILELIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,4,1,419,97
+    PUSHBUTTON      "停止传输",IDC_STOP,4,138,50,14
+    EDITTEXT        IDC_FILESTATUS,3,156,418,114,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL | 
+                    WS_HSCROLL
+    PUSHBUTTON      "拒绝接收",IDC_REFUSEFILE,4,120,50,14
+    PUSHBUTTON      "接收保存",IDC_SAVE,4,103,50,14
+    PUSHBUTTON      "显示窗口",IDC_SHOWWIN,371,103,50,14
+    PUSHBUTTON      "隐藏窗口",IDC_HIDEWIN,372,120,50,14
+END
+
+IDD_CONTACT_DIALOG DIALOG DISCARDABLE  0, 0, 248, 124
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "好友"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,140,104,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "关闭",IDCANCEL,194,104,50,14
+    PUSHBUTTON      "添加",IDC_ADD,55,45,50,14
+    PUSHBUTTON      "删除",IDC_DEL,107,45,50,14
+    EDITTEXT        IDC_CC,51,15,132,14,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,3,0,242,100
+    LTEXT           "CC:",IDC_STATIC,31,18,13,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "ccdemo Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "ccdemo\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2009\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ccdemo.EXE\0"
+            VALUE "ProductName", "ccdemo 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "登陆CC",                      ID_MENU_LOGINCC
+        MENUITEM "离线",                        ID_MENU_OFFLINE
+        MENUITEM SEPARATOR
+        MENUITEM "注册CC号",                    ID_MENU_REGCC
+        MENUITEM SEPARATOR
+        MENUITEM "退出",                        ID_MENU_EXIT
+    END
+    POPUP "操作(&C)"
+    BEGIN
+        MENUITEM "发送消息",                    ID_MENU_SENDMSG
+        MENUITEM "发送用户自定义命令",          ID_MENU_SENDCMD
+        MENUITEM "语音呼叫CC",                  ID_MENU_CALLCC
+        MENUITEM "发送P2P文件",                 ID_MENU_SENDFILE
+        MENUITEM SEPARATOR
+        MENUITEM "好友",                        ID_MENU_CONTACT
+    END
+    POPUP "参数(&P)"
+    BEGIN
+        MENUITEM "设置内部服务器IP地址",        ID_MENU_SETSERVER
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 ccdemo(&A)..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\ccdemo.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

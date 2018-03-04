@@ -1,0 +1,76 @@
+object FrmGetInput: TFrmGetInput
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  Caption = #36755#20837#26597#23703#20869#23481
+  ClientHeight = 293
+  ClientWidth = 397
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poOwnerFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lb1: TLabel
+    Left = 8
+    Top = 11
+    Width = 266
+    Height = 19
+    Caption = #35831#36755#20837#26597#23703#20869#23481':(200'#23383#20197#20869')'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -19
+    Font.Name = #23435#20307
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object mmoText: TMemo
+    Left = 8
+    Top = 36
+    Width = 377
+    Height = 205
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = #23435#20307
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    MaxLength = 200
+    ParentFont = False
+    TabOrder = 0
+  end
+  object btnOk: TButton
+    Left = 224
+    Top = 249
+    Width = 73
+    Height = 33
+    Caption = #30830#23450
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = #23435#20307
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btnOkClick
+  end
+  object btnCancel: TButton
+    Left = 310
+    Top = 249
+    Width = 75
+    Height = 33
+    Caption = #21462#28040
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = #23435#20307
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnCancelClick
+  end
+end

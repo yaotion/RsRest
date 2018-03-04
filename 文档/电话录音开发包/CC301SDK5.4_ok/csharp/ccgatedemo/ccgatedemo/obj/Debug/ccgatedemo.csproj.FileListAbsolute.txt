@@ -1,0 +1,14 @@
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\obj\Debug\ResolveAssemblyReference.cache
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\obj\Debug\ccgatedemo.Form1.resources
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\obj\Debug\ccgatedemo.Properties.Resources.resources
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\obj\Debug\ccgatedemo.csproj.GenerateResource.Cache
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\obj\Debug\ccgatedemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\obj\Debug\ccgatedemo.pdb
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\sdkdemo\bin\ccgatedemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\sdkdemo\bin\ccgatedemo.pdb
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\ccgatedemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\ccgatedemo.pdb
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\bin\debug\ccgatedemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\csharp\ccgatedemo\ccgatedemo\bin\debug\ccgatedemo.pdb
+E:\Project\Bridge\BriDevice\sdkdemo\bin\ccgatedemo.exe
+E:\Project\Bridge\BriDevice\sdkdemo\bin\ccgatedemo.pdb

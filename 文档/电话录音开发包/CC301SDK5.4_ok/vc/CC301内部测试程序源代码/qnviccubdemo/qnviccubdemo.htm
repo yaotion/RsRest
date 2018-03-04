@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+<TITLE>qnviccub demo</TITLE>
+</HEAD>
+<script language="javascript" type="text/javascript" src="js/qnviccub.js"></script>
+<BODY >
+<SCRIPT LANGUAGE="JavaScript" FOR="qnviccub" EVENT="OnQnvEvent(chID,type,handle,result,szdata)">
+	T_GetEvent(chID,type,handle,result,szdata)
+</SCRIPT>
+
+
+<SCRIPT   LANGUAGE="javascript">  
+  function   func()
+  { 
+  var vm=document.getElementById("C17")  
+  var   a=document.getElementById("C16")  
+  if(a.checked==true)
+  {
+	alert("ok")   	
+	vm.checked=true
+  }
+  else
+  {
+  alert("no")
+  vm.checked=true
+  }
+  }
+</SCRIPT>  
+<table border="0" width="83%" id="table1" height="156">
+	<tr>
+		<td width="4">　</td>
+		<td width="342">
+		
+		<input type="button" value="检查控件是否安装" name="B0" onClick="I_CheckActiveX()"><p>
+		
+		
+		
+		
+		<input type="button" value="打开设备" name="B3" onClick="TV_Initialize()"><input type="button" value="关闭设备" name="B6" onclick="TV_Disable()"></p>
+		<p>当前通道：<select size="1" name="D1"></select></p>
+		<form method="POST" action="--WEBBOT-SELF--">
+			<p>
+			<input type="checkbox" name="C16" ID=chk1 value="ON" onclick="TV_EnableHook(0,chk1.checked==true)"><label for="chk1" style="cursor:pointer">摘机/接听 
+			 
+			<input type="button" value="拒接来电" name="B22"></label><br>
+			<input type="checkbox" name="C17" ID=chk2 value="ON" onclick="TV_EnableMic2Line(0,chk2.checked==true)"><label for="chk2" style="cursor:pointer">打开MIC声音到线路</label><br>
+			<input type="checkbox" name="C18" ID=chk3 value="ON" onclick="TV_EnableDoPhone(0,chk3.checked==false)"><label for="chk3" style="cursor:pointer">断开电话机</label><br>
+			<input type="checkbox" name="C19" ID=chk4 value="ON" onclick="TV_EnableLine2Spk(0,chk4.checked==true)"><label for="chk4" style="cursor:pointer">打开线路声音到耳机</label><br>
+			<input type="checkbox" name="C20" ID=chk5 value="ON" onclick="TV_EnablePlay2Spk(0,chk5.checked==true)"><label for="chk5" style="cursor:pointer">播放的声音到耳机</label><br>
+			<input type="checkbox" name="C21" ID=chk6 value="ON" onclick="TV_EnableDoPlay(0,chk6.checked==true)"><label for="chk6" style="cursor:pointer">打开喇叭</label><br>
+			<input type="checkbox" name="C22" ID=chk7 value="ON" onclick="TV_EnablePlay2Line(0,chk7.checked==true)"><label for="chk7" style="cursor:pointer">播放语音到线路</label><br>
+			<input type="checkbox" name="C23" ID=chk8 value="ON" onclick="TV_EnableRingPower(0,chk8.checked==true)"><label for="chk8" style="cursor:pointer">启动内线连续震铃</label><br>
+			<input type="checkbox" name="C24" ID=chk9 value="ON" onclick="TV_EnablePhoneRing(0,chk9.checked==true)"><label for="chk9" style="cursor:pointer">启动内线间隔震铃</label><br>　</p>
+		</form>
+		<form>
+			<p><input type="text" name="T1" size="20" id="dialcode">
+			<input type="button" value="拨号" name="B10" onclick="TV_StartDial(0,dialcode.value)"><input type="button" value="停止拨号" name="B25" onclick="TV_StartDial(0,dialcode.value)"></p>
+		</form>
+		<p>
+		<input type="button" value="播放文件" name="B13" onclick="TV_StartPlayFile(0,filename.value)">
+		<input type="button" value="停止播放" name="B14" onclick="TV_StopPlayFile(0)"> <input type="button" value="暂停" name="B23" onclick="TV_StopPlayFile(0)"> <input type="button" value="恢复" name="B24" onclick="TV_StopPlayFile(0)"></p>
+		<p>录音格式：<select size="1" name="D2"></select> <br>
+		回音抵消：<input type="checkbox" name="C25" ID=chk10 value="ON" onclick="TV_EnablePhoneRing(0,chk9.checked==true)">
+		<br>
+		自动增益：<input type="checkbox" name="C26" ID=chk11 value="ON" onclick="TV_EnablePhoneRing(0,chk9.checked==true)"> </p>
+		<p>
+		<input type="button" value="录音文件" name="B17" onclick="TV_StartRecordFile(0,recfile.value)">
+		<input type="button" value="停止录音" name="B16" onclick="TV_StopRecordFile(0)"></p>
+		<form>
+			<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="获取盘符列表" name="B15" onclick="TV_GetDiskList()"></p>
+			<p>
+			<input type="text" name="TDISK" size="7" id="diskname" value="c:\">
+			<input type="button" value="获取硬盘空闲大小" name="C12" onclick="TV_GetFreeSpace(diskname.value)">
+			</p>
+			<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" value="获取硬盘总共大小" name="C13" onclick="TV_GetTotalSpace(diskname.value)"></p>
+		</form>
+		<p>　</td>
+		<td width="270">
+		　</td>
+		<td>
+		<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==
+" width="33" height="33">
+		</object><br><textarea id="StatusArea" rows="59" name="S1" cols="72"></textarea></td>
+	</tr>
+</table>
+
+
+</BODY>
+</HTML>

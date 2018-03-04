@@ -1,0 +1,236 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>CC301 pstn二次开发演示1.0</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript>  
+  function   window.onbeforeunload()  
+  {  
+ 	//alert('unload before');
+  }  
+ 
+function AppendStatus(szStatus)
+{
+	qnviccub.QNV_Tool(QNV_TOOL_WRITELOG,0,szStatus,NULL,NULL,0);//写本地日志到控件注册目录的userlog目录下
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	//var vValueArray=qnviccub.QNV_Event(0,2,0,"","",1024);
+	var vValue=" type="+uEventType+" Handle="+uHandle+" Result="+uResult+" szdata="+szdata;
+	switch(uEventType)
+	{
+	case BriEvent_PhoneHook:// 本地电话机摘机事件
+		AppendStatusEx(uID,"本地电话机摘机"+vValue);
+	break;	
+	case BriEvent_PhoneDial:// 只有在本地话机摘机，没有调用软摘机时，检测到DTMF拨号
+		AppendStatusEx(uID,"本地话机拨号"+vValue);
+	break;	
+	case BriEvent_PhoneHang:// 本地电话机挂机事件
+		AppendStatusEx(uID,"本地电话机挂机"+vValue);
+	break;
+	case BriEvent_CallIn:// 外线通道来电响铃事件
+		AppendStatusEx(uID,"外线通道来电响铃事件"+vValue);
+	break;
+	case BriEvent_GetCallID://得到来电号码
+		var SerialNo=qnviccub.QNV_DevInfo(uID,QNV_DEVINFO_GETSERIAL);
+		AppendStatusEx(uID,"得到来电号码"+vValue);
+	break;
+	case BriEvent_StopCallIn:// 对方停止呼叫(产生一个未接电话)
+		AppendStatusEx(uID,"对方停止呼叫(产生一个未接电话)"+vValue);
+	break;
+	case BriEvent_DialEnd:// 调用开始拨号后，全部号码拨号结束
+		AppendStatusEx(uID,"调用开始拨号后，全部号码拨号结束"+vValue);
+	break;
+	case BriEvent_PlayFileEnd:// 播放文件结束事件
+		AppendStatusEx(uID,"播放文件结束事件"+vValue);
+	break;
+	case BriEvent_PlayMultiFileEnd:// 多文件连播结束事件
+		AppendStatusEx(uID,"多文件连播结束事件"+vValue);
+	break;
+	case BriEvent_PlayStringEnd://播放字符结束
+		AppendStatusEx(uID,"播放字符结束"+vValue);
+	break
+	case BriEvent_RepeatPlayFile:// 播放文件结束准备重复播放
+		AppendStatusEx(uID,"播放文件结束准备重复播放"+vValue);
+	break;
+	case BriEvent_SendCallIDEnd:// 给本地设备发送震铃信号时发送号码结束
+		AppendStatusEx(uID,"给本地设备发送震铃信号时发送号码结束"+vValue);
+	break;
+	case BriEvent_RingTimeOut://给本地设备发送震铃信号时超时
+		AppendStatusEx(uID,"给本地设备发送震铃信号时超时"+vValue);
+	break;	
+	case BriEvent_Ringing://正在内线震铃
+		AppendStatusEx(uID,"正在内线震铃"+vValue);
+	break;
+	case BriEvent_Silence:// 通话时检测到一定时间的静音.默认为5秒
+		AppendStatusEx(uID,"通话时检测到一定时间的静音"+vValue);
+	break;
+	case BriEvent_GetDTMFChar:// 线路接通时收到DTMF码事件
+		AppendStatusEx(uID,"线路接通时收到DTMF码事件"+vValue);
+	break;
+	case BriEvent_RemoteHook:// 拨号后,被叫方摘机事件
+		AppendStatusEx(uID,"拨号后,被叫方摘机事件"+vValue);
+	break;
+	case BriEvent_RemoteHang://对方挂机事件
+		AppendStatusEx(uID,"对方挂机事件"+vValue);
+	break;
+	case BriEvent_Busy:// 检测到忙音事件,表示PSTN线路已经被断开
+		AppendStatusEx(uID,"检测到忙音事件,表示PSTN线路已经被断开"+vValue);
+	break;
+	case BriEvent_DialTone:// 本地摘机后检测到拨号音
+		AppendStatusEx(uID,"本地摘机后检测到拨号音"+vValue);
+	break;
+	case BriEvent_RingBack:// 电话机拨号结束呼出事件。
+		AppendStatusEx(uID,"电话机拨号结束呼出事件"+vValue);
+	break;
+	case BriEvent_MicIn:// MIC插入状态
+		AppendStatusEx(uID,"MIC插入状态"+vValue);
+	break;
+	case BriEvent_MicOut:// MIC拔出状态
+		AppendStatusEx(uID,"MIC拔出状态"+vValue);
+	break;
+	case BriEvent_FlashEnd:// 拍插簧(Flash)完成事件，拍插簧完成后可以检测拨号音后进行二次拨号
+		AppendStatusEx(uID,"拍插簧(Flash)完成事件，拍插簧完成后可以检测拨号音后进行二次拨号"+vValue);
+	break;
+	case BriEvent_RefuseEnd:// 拒接完成
+		AppendStatusEx(uID,"拒接完成"+vValue);
+	break;
+	case BriEvent_SpeechResult:// 语音识别完成 
+		AppendStatusEx(uID,"语音识别完成"+vValue);
+	break;
+	case BriEvent_FaxRecvFinished:// 接收传真完成
+		AppendStatusEx(uID,"接收传真完成"+vValue);
+	break;
+	case BriEvent_FaxRecvFailed:// 接收传真失败
+		AppendStatusEx(uID,"接收传真失败"+vValue);
+	break;
+	case BriEvent_FaxSendFinished:// 发送传真完成
+		AppendStatusEx(uID,"发送传真完成"+vValue);
+	break;
+	case BriEvent_FaxSendFailed:// 发送传真失败
+		AppendStatusEx(uID,"发送传真失败"+vValue);
+	break;
+	case BriEvent_OpenSoundFailed:// 启动声卡失败
+		AppendStatusEx(uID,"启动声卡失败"+vValue);
+	break;
+	case BriEvent_UploadSuccess://远程上传成功
+		AppendStatusEx(uID,"远程上传成功"+vValue);
+	break;
+	case BriEvent_UploadFailed://远程上传失败
+		AppendStatusEx(uID,"远程上传失败"+vValue);
+	break;
+	case BriEvent_EnableHook:// 应用层调用软摘机/软挂机成功事件
+		AppendStatusEx(uID,"应用层调用软摘机/软挂机成功事件"+vValue);
+	break;
+	case BriEvent_EnablePlay:// 喇叭被打开或者/关闭
+		AppendStatusEx(uID,"喇叭被打开或者/关闭"+vValue);
+	break;
+	case BriEvent_EnableMic:// MIC被打开或者关闭
+		AppendStatusEx(uID,"MIC被打开或者关闭"+vValue);
+	break;
+	case BriEvent_EnableSpk:// 耳机被打开或者关闭
+		AppendStatusEx(uID,"耳机被打开或者关闭"+vValue);
+	break;
+	case BriEvent_EnableRing:// 电话机跟电话线(PSTN)断开/接通
+		AppendStatusEx(uID,"电话机跟电话线(PSTN)断开/接通"+vValue);
+	break;
+	case BriEvent_DoRecSource:// 修改录音源
+		AppendStatusEx(uID,"修改录音源"+vValue);
+	break;
+	case BriEvent_DoStartDial:// 开始软件拨号
+		AppendStatusEx(uID,"开始软件拨号"+vValue);
+	break;
+	case BriEvent_RecvedFSK:// 接收到FSK信号，包括通话中FSK/来电号码的FSK
+		AppendStatusEx(uID,"接收到FSK信号，包括通话中FSK/来电号码的FSK"+vValue);
+	break;
+	case BriEvent_DevErr://设备错误
+		AppendStatusEx(uID,"设备错误"+vValue);
+	break;
+	default:
+		if(uEventType < BriEvent_EndID)
+			AppendStatusEx(uID,"忽略其它事件发生:ID=" + uEventType+ vValue);	
+	break;
+	}
+	
+}
+ 
+  </script>   
+  
+<body onload="TV_Initialize()" onunload="TV_Disable()">
+<SCRIPT LANGUAGE="JavaScript" FOR="qnviccub" EVENT="OnQnvEvent(chID,type,handle,result,param,szdata,szdataex)">
+	T_GetEvent(chID,type,handle,result,szdata)
+</SCRIPT>
+<p>
+当前主页面：</p>
+<p>
+<textarea id="StatusArea" rows="13" name="S1" cols="86"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==
+" width="33" height="33"></object>
+<input type="button" value="检查控件是否安装" name="B0" onClick="I_CheckActiveX()"></p>
+
+
+<p><input type="button" value="打开设备" name="B3" onClick="TV_Initialize()">
+<input type="button" value="关闭设备" name="B6" onclick="TV_Disable()">&nbsp;&nbsp;&nbsp;
+<input type="button" value="播放文件" name="B13" onclick="TV_StartPlayFile(0,0)">
+<input type="button" value="停止播放" name="B14" onclick="TV_StopPlayFile(0)">&nbsp;&nbsp;&nbsp;
+<input type="button" value="开始录音" name="B15" onclick="TV_StartRecordFile(0,0)">
+<input type="button" value="停止录音" name="B16" onclick="TV_StopRecordFile(0)">
+<input type="button" value="删除录音" name="B26" onclick="TV_DeleteRecordFile(0)"></p>
+
+<form>
+	<p>
+		<input type="text" name="T1" size="20" id="dialcode">
+		<input type="button" value="拨号" name="B10" onclick="TV_StartDial(0,dialcode.value)"></p>
+</form>
+<p><input type="button" value="摘机" name="B7" onclick="TV_OffHookCtrl(0)">
+<input type="button" value="挂机" name="B8" onclick="TV_HangUpCtrl(0)">
+<input type="button" value="拒接来电" name="B24" onclick="TV_RefuseCallIn(0)">
+<input type="button" value="拍插簧" name="B25" onclick="TV_StartFlash(0)"></p>
+<p>
+<input type="button" value="打开MIC" name="B18" onclick="TV_EnableMic(0,TRUE)">
+<input type="button" value="关闭MIC" name="B19" onclick="TV_EnableMic(0,FALSE)"> 
+<input type="button" value="打开耳机" name="B22" onclick="TV_EnableMicSpk(0,TRUE)">
+<input type="button" value="关闭耳机" name="B23" onclick="TV_EnableMicSpk(0,FALSE)">&nbsp; <input type="button" value="打开喇叭" name="B11" onclick="TV_OpenDoPlay(0)">
+<input type="button" value="关闭喇叭" name="B12" onclick="TV_CloseDoPlay(0)"> 
+<input type="button" value="断开话机与电话线连接" name="B20" onclick="TV_EnableRing(0,FALSE)">
+<input type="button" value="接通话机与电话线连接" name="B21" onclick="TV_EnableRing(0,TRUE)">  
+<input type="button" value="开始话机模拟震铃" name="B21" onclick="TV_StartRing(1,TRUE)">  
+<input type="button" value="停止话机模拟震铃" name="B21" onclick="TV_StartRing(1,FALSE)">  
+</p>
+
+<p><input type="button" value="获取盘符列表" name="B15" onclick="TV_GetDiskList()"> <input type="button" value="选择目录" name="B17" onclick="TV_BrowerPath()"></p>
+<form>
+	<p>
+		<input type="text" name="TDISK" size="7" id="diskname" value="c:\">
+		<input type="button" value="获取硬盘空闲大小" name="C12" onclick="TV_GetFreeSpace(diskname.value)">
+		<input type="button" value="获取硬盘总共大小" name="C13" onclick="TV_GetTotalSpace(diskname.value)">
+		<input type="button" value="所有设备和声卡组成会议" name="C14" onclick="TV_StartConference()">
+		<input type="button" value="停止会议" name="C15" onclick="TV_StopConference()"></p>
+</form>
+
+
+<p>　</p>
+
+
+<p>
+		<input type="button" value="子窗口" name="C16" onclick="window.open('demo.htm')"></p>
+
+
+</body>
+
+</html>

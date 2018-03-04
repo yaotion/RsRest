@@ -1,0 +1,162 @@
+object FrmSiteEdit: TFrmSiteEdit
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #23458#25143#31471#32534#36753
+  ClientHeight = 207
+  ClientWidth = 259
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lbl2: TLabel
+    Left = 17
+    Top = 133
+    Width = 35
+    Height = 16
+    Caption = #21517#31216':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbl3: TLabel
+    Left = 32
+    Top = 21
+    Width = 20
+    Height = 16
+    Caption = #27573':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbl1: TLabel
+    Left = 17
+    Top = 57
+    Width = 35
+    Height = 16
+    Caption = #36710#38388':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbl4: TLabel
+    Left = 17
+    Top = 98
+    Width = 35
+    Height = 16
+    Caption = #32534#21495':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object edtName: TEdit
+    Left = 59
+    Top = 129
+    Width = 182
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ParentFont = False
+    TabOrder = 0
+  end
+  object btnOk: TButton
+    Left = 80
+    Top = 169
+    Width = 75
+    Height = 25
+    Caption = #30830#23450
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = btnOkClick
+  end
+  object btnCancel: TButton
+    Left = 164
+    Top = 169
+    Width = 75
+    Height = 25
+    Caption = #21462#28040
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnCancelClick
+  end
+  object cbbArea: TComboBox
+    Left = 59
+    Top = 16
+    Width = 182
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 16
+    ParentFont = False
+    TabOrder = 3
+    OnChange = cbbAreaChange
+  end
+  object cbbWorkShop: TComboBox
+    Left = 59
+    Top = 54
+    Width = 182
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ItemHeight = 16
+    ParentFont = False
+    TabOrder = 4
+  end
+  object edtNumber: TEdit
+    Left = 59
+    Top = 94
+    Width = 182
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ParentFont = False
+    TabOrder = 5
+  end
+end

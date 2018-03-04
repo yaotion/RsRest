@@ -1,0 +1,1 @@
+1.把bin目录下相应的dll文件覆盖原来的版本的DLL就可以.[qnviccub.dll/bridge.dll为必须的DLL文件]

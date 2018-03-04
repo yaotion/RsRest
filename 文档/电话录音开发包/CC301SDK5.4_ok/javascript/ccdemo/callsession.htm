@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>cc语音呼叫</title>
+</head>
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript> 
+var	vHandle,vInit;
+function InitSession()
+{
+	vInit=1;
+}
+
+function precloseSession()
+{
+	alert('呼叫结束,准备关闭');
+}
+function ExitSession()
+{
+	window.opener.closeSession(this);
+}
+function SetDestCC(vCC)
+{
+	ccid.value=vCC;
+}
+function SetHandle(vCallHandle)
+{
+	vHandle=vCallHandle;
+	callhandle.value=vHandle;
+}
+function SetCallStatus(vStatus)
+{
+	ccstatus.value = vStatus;
+}
+
+function StopSession()
+{
+	if(vHandle != 0)
+	{
+		window.opener.StopSession(vHandle);		
+	}
+}
+function AcceptSession()
+{
+	if(vHandle != 0)
+	{
+		window.opener.AcceptSession(vHandle);
+	}
+}
+function RefuseSession()
+{
+	if(vHandle != 0)
+	{
+		window.opener.RefuseSession(vHandle);
+	}
+}
+function BusySession()
+{
+	if(vHandle != 0)
+	{
+		window.opener.BusySession(vHandle);
+	}
+}
+
+</script>
+
+<body onload="InitSession()" onunload="ExitSession()">
+
+<p>&nbsp; 状态:<input type="text" name="T2" ID="ccstatus" size="21"></p>
+<p>handle:<input type="text" name="T3" ID="callhandle" size="21"></p>
+<p>&nbsp; cc号:<input type="text" name="T1" ID="ccid" size="21"></p>
+<p></p>
+
+<input type="button" value="接听" name="B21" onclick="AcceptSession()">
+<input type="button" value="拒接" name="B22" onclick="RefuseSession()">
+<input type="button" value="回复忙" name="B23" onclick="BusySession()">
+<input type="button" value="结束通话" name="B20" onclick="StopSession()"></p>
+
+</body>
+
+</html>

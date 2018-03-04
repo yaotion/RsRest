@@ -1,0 +1,1 @@
+CertMgr /c /add icc301root.cer  /s /r localMachine root

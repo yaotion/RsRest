@@ -1,0 +1,17 @@
+; BriFaxUI.def : Declares the module parameters for the DLL.
+
+LIBRARY      "BriFaxUI"
+DESCRIPTION  'BriFaxUI Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+
+	BFU_StartRecvFax			@10
+	BFU_StopRecvFax				@11
+	BFU_StartSendFax			@12
+	BFU_StopSendFax				@13
+	BFU_FaxLog					@14
+	BFU_FaxTooltip				@15
+	BFU_CloseFaxTooltip			@16
+	BFU_CloseFaxLog				@17
+	BFU_FreeSource				@18

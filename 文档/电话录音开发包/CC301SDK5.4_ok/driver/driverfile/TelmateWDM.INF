@@ -1,0 +1,152 @@
+; Installation inf for CC301 USB CHIP
+;
+; (c) Copyright 1999 Microsoft
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+provider=%WinChipHead%
+DriverVer =11/23/2011,2.80.2010.12
+CatalogFile=icc301.cat
+CatalogFile.NTx86=icc301X86.cat
+CatalogFile.NTIA64=icc301I64.cat
+CatalogFile.NTAMD64=icc301X64.cat
+
+[ControlFlags]
+ExcludeFromSelect = USB\VID_4348&PID_5537, USB\VID_4348&PID_55E0, USB\VID_1A86&PID_5537, USB\VID_1A86&PID_5576, USB\VID_1FED&PID_C301
+
+[ClassInstall32]
+Addreg = QNVReg
+
+[ClassInstall]
+Addreg = QNVReg
+
+[QNVReg]
+HKR, , , 0, %ClassName%
+HKR, , Icon, , -5
+HKR, , NoInstallClass, , 1
+
+[Manufacturer]
+%WinChipHead% = WinChipHead
+%WinChipHead% = WinChipHead,NTamd64
+%WinChipHead% = WinChipHead,NTia64
+
+[WinChipHead]
+%CC301.DeviceDesc% = CC301.Install, USB\VID_1FED&PID_C301
+%CC301.DeviceDesc% = CC301.Install, USB\VID_4348&PID_5537
+%CC301.DeviceDesc% = CC301.Install, USB\VID_1A86&PID_5537
+%CC301.DeviceDesc% = CC301.Install, USB\VID_1A86&PID_5576
+%CC301.DeviceDesc% = CC301.Install, USB\VID_4348&PID_55E0
+
+[WinChipHead.NTamd64]
+%CC301.DeviceDesc% = CC301.Install,NTamd64, USB\VID_1FED&PID_C301
+%CC301.DeviceDesc% = CC301.Install.NTamd64, USB\VID_4348&PID_5537
+%CC301.DeviceDesc% = CC301.Install.NTamd64, USB\VID_1A86&PID_5537
+%CC301.DeviceDesc% = CC301.Install.NTamd64, USB\VID_1A86&PID_5576
+%CC301.DeviceDesc% = CC301.Install.NTamd64, USB\VID_4348&PID_55E0
+
+[WinChipHead.NTia64]
+%CC301.DeviceDesc% = CC301.Install,NTia64, USB\VID_1FED&PID_C301
+%CC301.DeviceDesc% = CC301.Install.NTia64, USB\VID_4348&PID_5537
+%CC301.DeviceDesc% = CC301.Install.NTia64, USB\VID_1A86&PID_5537
+%CC301.DeviceDesc% = CC301.Install.NTia64, USB\VID_1A86&PID_5576
+%CC301.DeviceDesc% = CC301.Install.NTia64, USB\VID_4348&PID_55E0
+
+
+[CC301.Install]
+CopyFiles = CC301.CopyFiles.SYS
+AddReg    = CC301.9X.AddReg, CC301.AddReg
+
+[CC301.Install.NT]
+CopyFiles = CC301.CopyFiles.SYS
+AddReg    = CC301.NT.AddReg, CC301.AddReg
+
+[CC301.Install.NTamd64]
+CopyFiles = CC301.CopyFiles.S64
+AddReg    = CC301.NT.AddReg, CC301.AddReg
+
+[CC301.Install.NTia64]
+CopyFiles = CC301.CopyFiles.I64
+AddReg    = CC301.NT.AddReg, CC301.AddReg
+
+[CC301.CopyFiles.SYS]
+TelmateWDM.SYS, , , 2
+
+[CC301.CopyFiles.S64]
+TelmateW64.SYS, , , 2
+
+[CC301.CopyFiles.I64]
+TelmateI64.SYS, , , 2
+
+
+[CC301.9X.AddReg]
+HKR, , DevLoader, , *NTKERN
+HKR, , NTMPDriver, , TelmateWDM.SYS
+
+[CC301.NT.AddReg]
+
+[CC301.AddReg]
+HKLM, SOFTWARE\WinChipHead\IC\CC301, WDM, 0x00010001, 0x00000025
+HKLM, SOFTWARE\WinChipHead\IC\CC301, Function, , "USB slave"
+
+[CC301.Install.NT.Services]
+AddService = CC301, 2, CC301.Service
+
+[CC301.Install.NTamd64.Services]
+AddService = CC301, 2, CC301.ServiceA64
+
+[CC301.Install.NTia64.Services]
+AddService = CC301, 2, CC301.ServiceI64
+
+[CC301.Service]
+DisplayName   = "CC301WDM"
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %10%\System32\Drivers\TelmateWDM.SYS
+
+[CC301.ServiceA64]
+DisplayName   = "CC301WDM"
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %10%\System32\Drivers\TelmateW64.SYS
+
+[CC301.ServiceI64]
+DisplayName   = "CC301WDM"
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %10%\System32\Drivers\TelmateI64.SYS
+
+[DestinationDirs]
+DefaultDestDir      = 10, System32\Drivers
+CC301.CopyFiles.SYS = 10, System32\Drivers
+CC301.CopyFiles.S64 = 10, System32\Drivers
+CC301.CopyFiles.I64 = 10, System32\Drivers
+
+[SourceDisksFiles]
+TelmateWDM.SYS  = 1
+TelmateW64.SYS  = 1
+TelmateI64.SYS  = 1
+
+[SourceDisksNames]
+1 = "CC301 Installation Disk", TelmateWDM.SYS, ,
+
+[SourceDisksNames.NTamd64]
+1 = "CC301 Installation Disk", TelmateW64.SYS, ,
+
+[SourceDisksNames.NTia64]
+1 = "CC301 Installation Disk", TelmateI64.SYS, ,
+
+[Strings]
+ClassName        = "Interface"
+WinChipHead      = "CC301"
+CC301.DeviceDesc = "qnv icc301 usb board"
+
+[Strings.0804]
+ClassName        = "CC301 USB"
+WinChipHead      = "CC301"
+CC301.DeviceDesc = "qnv icc301 usb board"

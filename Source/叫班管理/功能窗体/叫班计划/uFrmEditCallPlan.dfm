@@ -1,0 +1,183 @@
+object FrmEditCallPlan: TFrmEditCallPlan
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = #32534#36753#21483#29677#35745#21010
+  ClientHeight = 222
+  ClientWidth = 341
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lbl: TRzLabel
+    Left = 24
+    Top = 19
+    Width = 68
+    Height = 19
+    Caption = #36710'      '#27425':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbl1: TRzLabel
+    Left = 24
+    Top = 61
+    Width = 68
+    Height = 19
+    Caption = #25151'      '#38388':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbl2: TRzLabel
+    Left = 22
+    Top = 102
+    Width = 70
+    Height = 19
+    Caption = #24320#36710#26102#38388':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbl3: TRzLabel
+    Left = 22
+    Top = 144
+    Width = 70
+    Height = 19
+    Caption = #21483#29677#26102#38388':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object edtTrainNo: TEdit
+    Left = 104
+    Top = 15
+    Width = 137
+    Height = 27
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ParentFont = False
+    TabOrder = 0
+  end
+  object edtRoomNum: TEdit
+    Left = 104
+    Top = 57
+    Width = 137
+    Height = 27
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    ParentFont = False
+    TabOrder = 1
+  end
+  object btnOk: TRzButton
+    Left = 121
+    Top = 179
+    Width = 87
+    Height = 31
+    Caption = #30830#23450
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = btnOkClick
+  end
+  object btnCancel: TRzButton
+    Left = 234
+    Top = 179
+    Width = 87
+    Height = 31
+    Caption = #21462#28040
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    OnClick = btnCancelClick
+  end
+  object dtpStartTrainTime: TAdvDateTimePicker
+    Left = 104
+    Top = 98
+    Width = 217
+    Height = 27
+    Date = 41982.531909722220000000
+    Time = 41982.531909722220000000
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    Kind = dkDateTime
+    ParentFont = False
+    TabOrder = 4
+    BorderStyle = bsSingle
+    Ctl3D = True
+    DateTime = 41982.531909722220000000
+    TimeFormat = 'HH:mm'
+    Version = '1.1.0.0'
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'Tahoma'
+    LabelFont.Style = []
+  end
+  object dtpCallTime: TAdvDateTimePicker
+    Left = 104
+    Top = 140
+    Width = 217
+    Height = 27
+    Date = 41982.532430555560000000
+    Time = 41982.532430555560000000
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = #20013#25991' ('#31616#20307') - '#25628#29399#25340#38899#36755#20837#27861
+    Kind = dkDateTime
+    ParentFont = False
+    TabOrder = 5
+    BorderStyle = bsSingle
+    Ctl3D = True
+    DateTime = 41982.532430555560000000
+    TimeFormat = 'HH:mm'
+    Version = '1.1.0.0'
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'Tahoma'
+    LabelFont.Style = []
+  end
+end

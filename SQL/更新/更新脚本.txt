@@ -1,0 +1,39 @@
+ALTER TABLE [dbo].[TAB_Plan_WaitWork_Trainman] ADD [nTrainmanIndex] int NULL ;
+go
+
+
+ALTER VIEW [dbo].[VIEW_Org_Area] AS 
+SELECT strGUID, strAreaName, strJWDNumber
+FROM dbo.TAB_Org_Area;
+GO
+
+
+ALTER VIEW [dbo].[VIEW_Plan_Waitman] AS 
+SELECT     [plan].strPlanGUID, [plan].strRoomNum, [plan].strCheCi, [plan].dtWaitWorkTime, [plan].dtCallWorkTime, [plan].ePlanType, [plan].ePlanState, tm.strGUID, 
+                      tm.eTrainmanState, tm.strTrainmanNumber, tm.strTrainmanName, tm.strRealRoom, [plan].strSignPlanGUID, tm.strTrainmanGUID, [plan].strCheJianGUID, 
+                      [plan].strCheJianName, [plan].strTrainJiaoLuGUID, [plan].strTrainJiaoLuName, [plan].strTrainJiaoLuNickName, [plan].bNeedSyncCall, tm.dtFirstCallTime, 
+                      [plan].dtNotifyUnLeaveTime, tm.bCallSucess, [plan].bNeedRest, tm.ID, tm.nTrainmanIndex
+FROM         dbo.TAB_Plan_Waitwork AS [plan] INNER JOIN
+                      dbo.TAB_Plan_WaitWork_Trainman AS tm ON [plan].strPlanGUID = tm.strPlanGUID; 
+GO
+
+
+                     
+ALTER VIEW [dbo].[VIEW_PlanInOutRoom] AS 
+SELECT     dbo.VIEW_Plan_Waitman.strPlanGUID, dbo.VIEW_Plan_Waitman.strRoomNum, dbo.VIEW_Plan_Waitman.strCheCi, dbo.VIEW_Plan_Waitman.dtWaitWorkTime, 
+                      dbo.VIEW_Plan_Waitman.dtCallWorkTime, dbo.VIEW_Plan_Waitman.ePlanType, dbo.VIEW_Plan_Waitman.ePlanState, dbo.VIEW_Plan_Waitman.strGUID, 
+                      dbo.VIEW_Plan_Waitman.eTrainmanState, dbo.VIEW_Plan_Waitman.strTrainmanNumber, dbo.VIEW_Plan_Waitman.strTrainmanName, 
+                      dbo.VIEW_Plan_Waitman.strRealRoom, dbo.VIEW_Plan_Waitman.strSignPlanGUID, dbo.VIEW_Plan_Waitman.strTrainmanGUID, 
+                      dbo.VIEW_Plan_Waitman.strCheJianGUID, dbo.VIEW_Plan_Waitman.strCheJianName, dbo.VIEW_Plan_Waitman.strTrainJiaoLuGUID, 
+                      dbo.VIEW_Plan_Waitman.strTrainJiaoLuName, dbo.VIEW_Plan_Waitman.strTrainJiaoLuNickName, dbo.TAB_Plan_InRoom.strInRoomGUID, 
+                      dbo.TAB_Plan_InRoom.dtInRoomTime, dbo.TAB_Plan_InRoom.nInRoomVerifyID, dbo.TAB_Plan_InRoom.strInDutyUserGUID, dbo.TAB_Plan_InRoom.strSiteGUID, 
+                      dbo.TAB_Plan_InRoom.strRoomNumber, dbo.TAB_Plan_InRoom.nBedNumber, dbo.TAB_Plan_InRoom.dtInCreateTime, dbo.TAB_Plan_InRoom.bInUploaded, 
+                      dbo.TAB_Plan_InRoom.eInPlanType, dbo.TAB_Plan_InRoom.dtArriveTime, dbo.TAB_Plan_OutRoom.strOutRoomGUID, dbo.TAB_Plan_OutRoom.dtOutRoomTime, 
+                      dbo.TAB_Plan_OutRoom.nOutRoomVerifyID, dbo.TAB_Plan_OutRoom.strOutDutyUserGUID, dbo.TAB_Plan_OutRoom.dtOutCreateTime, 
+                      dbo.TAB_Plan_OutRoom.bOutUpLoaded, dbo.TAB_Plan_OutRoom.eOutPlanType, dbo.TAB_Plan_InRoom.strWaitPlanGUID, dbo.TAB_Plan_InRoom.strTrainPlanGUID, 
+                      dbo.VIEW_Plan_Waitman.bNeedSyncCall, dbo.VIEW_Plan_Waitman.dtFirstCallTime, dbo.VIEW_Plan_Waitman.dtNotifyUnLeaveTime, 
+                      dbo.VIEW_Plan_Waitman.bCallSucess, dbo.VIEW_Plan_Waitman.bNeedRest, dbo.VIEW_Plan_Waitman.ID, dbo.VIEW_Plan_Waitman.nTrainmanIndex
+FROM         dbo.VIEW_Plan_Waitman LEFT OUTER JOIN
+                      dbo.TAB_Plan_InRoom ON dbo.VIEW_Plan_Waitman.strPlanGUID = dbo.TAB_Plan_InRoom.strWaitPlanGUID AND 
+                      dbo.VIEW_Plan_Waitman.strTrainmanGUID = dbo.TAB_Plan_InRoom.strTrainmanGUID LEFT OUTER JOIN
+                      dbo.TAB_Plan_OutRoom ON dbo.TAB_Plan_InRoom.strInRoomGUID = dbo.TAB_Plan_OutRoom.strInRoomGUID;

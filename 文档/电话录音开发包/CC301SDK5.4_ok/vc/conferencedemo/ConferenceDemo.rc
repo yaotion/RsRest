@@ -1,0 +1,277 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ConferenceDemo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\ConferenceDemo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 ConferenceDemo"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "ConferenceDemo 1.0 版",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2010",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_CONFERENCEDEMO_DIALOG DIALOGEX 0, 0, 399, 404
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "多通道设备软交换/会议演示 1.0"
+FONT 9, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,293,387,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,345,387,50,14
+    EDITTEXT        IDC_CONFSTATUS,15,293,374,83,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL | 
+                    WS_HSCROLL
+    PUSHBUTTON      "创建一个新会议",IDC_CREATECONF,7,107,87,36
+    GROUPBOX        "会议列表",IDC_STATIC,7,146,178,126
+    GROUPBOX        "会议通道成员",IDC_STATIC,193,147,201,125
+    LISTBOX         IDC_CHANNELLIST,206,164,74,83,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "会议录音",IDC_STARTREC,78,254,50,14
+    PUSHBUTTON      "停止录音",IDC_STOPREC,129,254,50,14
+    EDITTEXT        IDC_SPKVOLUME,334,164,31,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "设置",IDC_SETVOLUME,335,200,29,14
+    PUSHBUTTON      "暂停",IDC_PAUSE,207,252,31,14
+    PUSHBUTTON      "恢复",IDC_RESUME,247,252,30,14
+    CONTROL         "禁止说",IDC_DISABLEMIC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,291,217,40,10
+    CONTROL         "禁止听",IDC_DISABLESPK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,292,234,40,10
+    LTEXT           "听的音量：",IDC_STATIC,288,166,41,8
+    LTEXT           "说的音量：",IDC_STATIC,289,184,41,8
+    EDITTEXT        IDC_MICVOLUME,334,182,31,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "删除会议",IDC_DELCONF,13,254,50,14
+    CONTROL         "List3",IDC_CONFLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,13,160,167,88
+    GROUPBOX        "状态提示",IDC_STATIC,8,280,387,104
+    LTEXT           "通道：",IDC_STATIC,8,68,25,8
+    COMBOBOX        IDC_COMBOCHANNEL,36,66,48,96,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "通道操作",IDC_STATIC,3,53,392,48
+    CONTROL         "摘机/接听",IDC_DOHOOK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,91,68,52,10
+    EDITTEXT        IDC_DIALCODE,267,68,84,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "拨号",IDC_DIAL,354,67,34,14
+    LTEXT           "拨号：",IDC_STATIC,238,69,25,8
+    CONTROL         "断开话机",IDC_DOPHONE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,147,68,48,10
+    CONTROL         "启动重叠忙音检测",IDC_ADBUSY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,91,83,83,10
+    GROUPBOX        "使用步骤",IDC_STATIC,4,1,390,49
+    LTEXT           "1.多个通道拨通电话，或者呼入后接听(如果使用玻瑞器的内线PHONE通道,不需拨号只需要断开话机，然后选择LineIn为TEL MIC).\r\n2.创建会议,把该多个通道加入到会议",
+                    IDC_STATIC,13,15,374,26
+    LTEXT           "Rec Source(LineIn)：",IDC_STATIC,183,85,81,8
+    COMBOBOX        IDC_SELECTLINE,267,84,122,116,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CREATECONF_DIALOG DIALOG DISCARDABLE  0, 0, 197, 154
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "创建新会议"
+FONT 9, "新宋体"
+BEGIN
+    EDITTEXT        IDC_CONFNAME,62,11,121,14,ES_AUTOHSCROLL
+    CONTROL         "List5",IDC_CHANNELLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,17,49,172,80
+    DEFPUSHBUTTON   "确定",IDOK,87,134,50,14
+    PUSHBUTTON      "取消",IDCANCEL,139,134,50,14
+    LTEXT           "请选择加入到会议中的通道：",IDC_STATIC,16,38,105,8
+    LTEXT           "会议名称：",IDC_STATIC,17,14,41,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "ConferenceDemo Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "ConferenceDemo\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2010\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "ConferenceDemo.EXE\0"
+            VALUE "ProductName", "ConferenceDemo 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CONFERENCEDEMO_DIALOG DLGINIT
+BEGIN
+    IDC_SELECTLINE, 0x403, 14, 0
+0x494c, 0x454e, 0x2031, 0x4554, 0x204c, 0x494d, 0x0043, 
+    IDC_SELECTLINE, 0x403, 15, 0
+0x494c, 0x454e, 0x2032, 0x4554, 0x204c, 0x494c, 0x454e, "\000" 
+    IDC_SELECTLINE, 0x403, 11, 0
+0x494c, 0x454e, 0x2033, 0x4f48, 0x4b4f, "\000" 
+    IDC_SELECTLINE, 0x403, 9, 0
+0x494c, 0x454e, 0x4f4c, 0x504f, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 ConferenceDemo(&A)..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\ConferenceDemo.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

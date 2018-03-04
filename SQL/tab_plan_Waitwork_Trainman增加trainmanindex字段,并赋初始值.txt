@@ -1,0 +1,41 @@
+
+
+DECLARE
+	@PrePlanGUID    varchar(50),
+	@curPlanGUID varchar(50),
+	@ID int,@index int;
+DECLARE trainman_cursor CURSOR FOR
+SELECT strPlanGUID,id FROM TAB_Plan_WaitWork_Trainman
+order by strplanguid,id
+
+set @index = 0;
+set @PrePlanGUID = '';
+
+OPEN trainman_cursor
+
+-- Perform the first fetch.
+--FETCH NEXT FROM trainman_cursor
+FETCH NEXT FROM trainman_cursor INTO @curPlanGUID, @ID;
+-- Check @@FETCH_STATUS to see if there are any more rows to fetch.
+WHILE @@FETCH_STATUS = 0
+BEGIN
+   -- This is executed as long as the previous fetch succeeds.
+   if @PrePlanGUID !=  @curPlanGUID
+   begin
+	set @index = 0;
+	set @PrePlanGUID = @curPlanGUID
+   end 
+   
+   update TAB_Plan_WaitWork_Trainman set nTrainmanIndex = @index where id = @ID;
+   set @index = @index + 1;
+   
+   print  @curplanGUID  
+   print  @index;
+   
+   FETCH NEXT FROM trainman_cursor INTO @curPlanGUID, @ID;
+END
+
+CLOSE trainman_cursor
+DEALLOCATE trainman_cursor
+GO  
+  

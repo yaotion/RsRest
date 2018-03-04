@@ -1,0 +1,9 @@
+  Integer         -2147483648..2147483647         signed   32-bit  
+  Cardinal       0..4294967295                             unsigned   32-bit  
+  Shortint       -128..127                                     signed   8-bit  
+  Smallint     -32768..32767                             signed   16-bit  
+  Longint         -2147483648..2147483647         signed   32-bit  
+  Int64             -2^63..2^63?                               signed   64-bit  
+  Byte               0..255                                           unsigned   8-bit  
+  Word               0..65535                                       unsigned   16-bit  
+  Longword       0..4294967295                             unsigned   32-bit   

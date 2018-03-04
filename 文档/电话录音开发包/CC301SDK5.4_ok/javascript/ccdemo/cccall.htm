@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>cc P2P语音呼叫管理窗口</title>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language="javascript"> 
+var vInit;
+var	vSessionArr=new Array();
+function InitCall()
+{
+	window.opener.vCallwin=this;
+	vInit=1;
+}
+
+function ExitCall()
+{
+	//停止所有呼叫
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		StopSession(vSessionArr[i].vHandle);
+		vSessionArr[i].close();
+	}
+	window.opener.vCallwin=0;
+}
+
+function AppendCallSession(vCallSession)
+{
+	vSessionArr.push(vCallSession);
+}
+
+function opencallsession(vHandle,vCC)
+{
+	var vName='';
+   	var vwin=window.open('callsession.htm',vName,'height=300, width=400, toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=yes');   
+   	T_WaitForWin(vwin);
+   	vwin.SetHandle(vHandle);
+   	vwin.SetDestCC(vCC);
+   	AppendCallSession(vwin);   	
+}
+
+function closecallSession(vHandle)
+{
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		if(vSessionArr[i].vHandle == vHandle)
+		{
+			vSessionArr[i].precloseSession();
+			vSessionArr[i].close();
+			vSessionArr.splice(i,1);
+			break;
+		}
+	}
+	if(vSessionArr.length == 0)//已经没有呼叫了,自动退出本窗口
+		this.close();
+}
+
+function closeSession(vCallSession)
+{
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		if(vSessionArr[i] == vCallSession)
+		{
+			StopSession(vCallSession.vHandle);
+			vCallSession.vHandle=0;;
+			break;
+		}
+	}
+}
+
+function SetSessionStatus(vHandle,vStatus)
+{
+	for(var i=0;i<vSessionArr.length;i++)
+	{
+		if(vSessionArr[i].vHandle == vHandle)
+		{
+			vSessionArr[i].SetCallStatus(vStatus);
+			break;
+		}
+	}
+}
+
+function Startcallsession(vDestCC)
+{
+	var vHandle=window.opener.StartSession(vDestCC);
+	if(vHandle > 0)
+	{
+		opencallsession(vHandle,vDestCC);
+	}
+}
+
+function StopSession(vCallHandle)
+{
+	if(vCallHandle != 0)
+		window.opener.StopSession(vCallHandle);
+}
+
+function RefuseSession(vCallHandle)
+{
+	if(vCallHandle != 0)
+		window.opener.RefuseSession(vCallHandle);
+}
+function BusySession(vCallHandle)
+{
+	if(vCallHandle != 0)
+		window.opener.BusySession(vCallHandle);
+}
+function AcceptSession(vCallHandle)
+{
+	if(vCallHandle != 0)
+		window.opener.AcceptSession(vCallHandle);
+}
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	var vCC,vName;
+	var vValueMsg = szdata.split(MSG_TEXT_SPLIT);
+	if(vValueMsg.length == 0) return;
+	var vParamArr = vValueMsg[0].split(MSG_KEY_SPLIT);	
+	for(var i=0;i<vParamArr.length;i++)  
+	{
+		if(vParamArr[i].indexOf(MSG_KEY_CC) == 0)
+		{
+			vCC=vParamArr[i].substring(MSG_KEY_CC.length,vParamArr[i].length);			
+		}else if(vParamArr[i].indexOf(MSG_KEY_NAME) == 0)
+		{
+			vName =vParamArr[i].substring(MSG_KEY_NAME.length,vParamArr[i].length); 
+		}				
+  	}	
+	switch(uEventType)
+	{
+	case BriEvent_CC_CallIn://接收到CC呼入请求，打开一个新的呼叫窗口
+	{
+	opencallsession(uHandle,vCC);
+	SetSessionStatus(uHandle,'正在呼入');
+	}
+	break;
+	case BriEvent_CC_CallOutFailed:
+	SetSessionStatus(uHandle,'呼叫失败');
+	alert('呼叫失败 '+vCC);
+	break;
+	case BriEvent_CC_CallOutSuccess:
+	opencallsession(uHandle,vCC);
+	SetSessionStatus(uHandle,'正在呼叫');	
+	break;
+	case BriEvent_CC_Connecting:
+	SetSessionStatus(uHandle,'正在连接');
+	break;
+	case BriEvent_CC_Connected:
+	SetSessionStatus(uHandle,'已连通');
+	break;
+	case BriEvent_CC_CallFinished:
+	SetSessionStatus(uHandle,'呼叫结束');
+	closecallSession(uHandle);
+	break;
+	default:break;	
+	}
+}
+
+</script>
+
+
+</head>
+<body  onload="InitCall()" onunload="ExitCall()">
+
+<p>
+
+
+语音呼叫管理窗口..</p>
+<p>
+
+
+　</p>
+<p>
+
+
+　</p>
+
+</body>
+
+</html>
+

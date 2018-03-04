@@ -1,0 +1,118 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>cc网络即时消息</title>
+</head>
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+<script language="javascript" >
+var vInit;
+function ExitIM()
+{
+	window.opener.vMsgwin=0;
+}
+function InitIM()
+{
+	if(qnviccub1.QNV_Attach(0) == 0)//绑定本进程里其它地方打开的设备句柄，该例子里为ccdemo打开的设备句柄.注意：(不同的进程之间不能绑定)
+	    alert('绑定失败');
+	window.opener.vMsgwin=this;
+	vInit=1;
+}
+
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+
+function  AppendRecvMsg(szMsg)
+{
+	var vStatus;
+	var vCC,vName,vTime;
+	var vValueMsg = szMsg.split(MSG_TEXT_SPLIT); 
+	var vParamArr=vValueMsg[0].split(MSG_KEY_SPLIT);
+	for(var i=0;i<vParamArr.length;i++)  
+	{
+		if(vParamArr[i].indexOf(MSG_KEY_CC) == 0)
+		{
+			vCC=vParamArr[i].substring(MSG_KEY_CC.length,vParamArr[i].length);			
+		}else if(vParamArr[i].indexOf(MSG_KEY_TIME) == 0)
+		{
+			vTime =vParamArr[i].substring(MSG_KEY_TIME.length,vParamArr[i].length); 
+		}else if(vParamArr[i].indexOf(MSG_KEY_NAME) == 0)
+		{
+			vName =vParamArr[i].substring(MSG_KEY_NAME.length,vParamArr[i].length); 
+		}				
+  	}	
+	T1.value=vCC;
+	var vd=new Date();
+	vd.setTime(parseInt(vTime)*1000);
+	vStatus = vCC+" ["+vName+"]"+" "+vd.getFullYear() + "/"+(vd.getMonth()+1)+"/"+vd.getDate()+" " +vd.getHours()+":"+vd.getMinutes()+":"+vd.getSeconds() +"\r\n"+"  "+vValueMsg[1];
+	AppendStatus(vStatus);
+}
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	switch(uEventType)
+	{
+	case BriEvent_CC_RecvedMsg:
+		AppendRecvMsg(szdata);	
+	break;
+	default:break;	
+	}
+}
+function  SendMsg(vMsg,vCC)
+{
+if(vCC == '')
+{
+	alert("目标CC不能为空");
+	return;
+}
+if(vMsg == '')
+{
+	alert("消息内容不能为空");
+	return;
+}
+
+if(qnviccub1.QNV_CCCtrl_Msg(QNV_CCCTRL_MSG_SENDMSG,vCC,vMsg,NULL,0) <= 0)
+	alert("发送消息失败");
+
+//window.opener.SendMsg(vMsg,vCC);
+
+var vStatus;
+var vOwnerCC=window.opener.GetOwnerCC();
+var vNickName=window.opener.GetOwnerNickName();
+var vd=new Date();
+vStatus = vOwnerCC+" ["+vNickName+"] "+vd.getFullYear() + "/"+(vd.getMonth()+1)+"/"+vd.getDate()+" " +vd.getHours()+":"+vd.getMinutes()+":"+vd.getSeconds() +"\r\n"+"  "+vMsg;
+AppendStatus(vStatus);
+sendmsg.value='';
+sendmsg.focus();
+}
+
+
+</script>
+
+<body  onload="InitIM()" onunload="ExitIM()">
+<p>
+<textarea id="StatusArea" rows="19" name="S1" cols="75"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" name="ccocx1" id="qnviccub1" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==" width="33" height="33"></object>
+
+</p>
+<p>
+消息内容:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+目标CC:<input type="text" name="T1" ID="ccid" size="20"></p>
+<p>
+<textarea id="sendmsg" rows="8" name="S2" cols="74"></textarea></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<input type="button" value="发送" name="B20" onclick="SendMsg(sendmsg.value,ccid.value)">&nbsp;
+
+
+</body>
+
+
+</html>

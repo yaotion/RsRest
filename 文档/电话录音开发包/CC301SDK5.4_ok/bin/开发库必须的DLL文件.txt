@@ -1,0 +1,4 @@
+qnviccub.dll和bridge.dll为必须的DLL文件
+把该两个DLL复制到您开发的exe目录或者系统system目录，建议复制到您开发的exe目录下运行。
+
+其它DLL的功能说明请参考：'该目录文件功能介绍.txt'

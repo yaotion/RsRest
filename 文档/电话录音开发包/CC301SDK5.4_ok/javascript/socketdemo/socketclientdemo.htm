@@ -1,0 +1,123 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>socket client 数据收发演示1.0</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+
+<script   language=javascript>  
+var	vSocketHandle;
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	var vValue=" type="+uEventType+" Handle="+uHandle+" Result="+uResult+" szdata="+szdata;
+	switch(uEventType)
+	{
+		case BriEvent_Socket_C_ConnectSuccess:
+			{
+				AppendStatus("连接成功....");
+			}break;
+		case BriEvent_Socket_C_ConnectFailed:
+			{
+				AppendStatus("连接失败....");
+				qnviccub.QNV_Socket_Client(QNV_SOCKET_CLIENT_STARTRECONNECT,vSocketHandle,3000,0,0);
+				AppendStatus("3秒后启动重新连接....");
+			}break;
+		case BriEvent_Socket_C_ReConnect:
+			{
+				AppendStatus("开始重新连接....");
+			}break;
+		case BriEvent_Socket_C_ReConnectFailed:
+			{
+				AppendStatus("重新连接失败....");
+			}break;
+		case BriEvent_Socket_C_ServerClose:
+			{
+				AppendStatus("服务器已断开连接....");
+			}break;
+		case BriEvent_Socket_C_DisConnect:
+			{
+				AppendStatus("激活超时,网络有问题了....");
+			}break;
+		case BriEvent_Socket_C_RecvedData:
+			{
+				AppendStatus("终端接收到数据："+szdata);
+			}break;
+		default:break;
+	}	
+}
+ 
+function TV_StartConnect(szIP,szPort)
+{
+	if(vSocketHandle > 0) TV_StopConnect();//关闭上个连接
+	vSocketHandle=qnviccub.QNV_Socket_Client(QNV_SOCKET_CLIENT_CONNECT,0,szPort,szIP,0);
+	if(vSocketHandle<= 0)
+	{
+		alert("连接失败");
+	}else
+		AppendStatus("开始连接");
+}
+
+function TV_StopConnect()
+{
+	if(vSocketHandle!= 0)
+	{
+		qnviccub.QNV_Socket_Client(QNV_SOCKET_CLIENT_DISCONNECT,vSocketHandle,0,0,0);
+		vSocketHandle=0;
+		AppendStatus("断开连接");
+	}	
+}
+function TV_SendData(szData)
+{
+	if(vSocketHandle!= 0)
+	{
+		qnviccub.QNV_Socket_Client(QNV_SOCKET_CLIENT_SENDDATA,vSocketHandle,0,szData,szData.length);		
+	}	
+}
+
+</script>   
+  
+<body onload="qnviccub.QNV_OpenDevice(ODT_SOCKET_CLIENT,0,0)"  onunload="TV_Disable()">
+<SCRIPT LANGUAGE="JavaScript" FOR="qnviccub" EVENT="OnQnvEvent(chID,type,handle,result,param,szdata,szdataex)">
+	T_GetEvent(chID,type,handle,result,szdata)
+</SCRIPT>
+<p>
+当前主页面：</p>
+<p>
+<textarea id="StatusArea" rows="13" name="S1" cols="86"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==
+" width="33" height="33"></object>
+<input type="button" value="检查控件是否安装" name="B0" onClick="I_CheckActiveX()"></p>
+
+
+<p>服务器IP：<input type="text" name="T1" ID="svrip" size="20" value="127.0.0.1"></p>
+<p>服务器端口：<input type="text" name="T2" ID="svrport" size="20" value="8888"></p>
+<p>
+	<input type="button" value="连接服务器" name="B16" onclick="TV_StartConnect(svrip.value,svrport.value)">&nbsp;
+	<input type="button" value="断开服务器" name="B17" onclick="TV_StopConnect()"></p>
+
+
+<p>发送数据：</p>
+<p>
+<textarea id="senddata" rows="8" name="S2" cols="28"></textarea></p>
+<p>
+	<input type="button" value="发送" name="B18" onclick="TV_SendData(senddata.value)"></p>
+
+</body>
+
+</html>

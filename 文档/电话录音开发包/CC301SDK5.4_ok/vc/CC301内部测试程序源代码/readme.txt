@@ -1,0 +1,2 @@
+BriFaxUI:传真收发DLL库,开发传真时可做参考
+qnviccubdemo:CC301芯片的所有系列设备测试程序

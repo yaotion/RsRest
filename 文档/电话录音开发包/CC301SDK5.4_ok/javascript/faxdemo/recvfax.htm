@@ -1,0 +1,133 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>CC301 传真接收演示</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+<script   language=javascript>
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+
+function InitRecvFax()
+{
+	if(qnviccub.QNV_Attach(0) <= 0)
+		alert('绑定失败');
+	
+	window.opener.vRecvfaxwin=this;	
+}
+
+function ExitRecvFax()
+{
+	window.opener.vRecvfaxwin=0;
+}
+
+function StartRecvFax()
+{
+ if(recvfaxfile.value == '')
+ {
+	alert('接收文件路径不能为空');
+	return;
+ }
+ if(qnviccub.QNV_Fax(0,QNV_FAX_LOAD,0,NULL) <= 0)
+ {
+	AppendStatus('启动传真失败...');
+	return;
+ }
+ if(qnviccub.QNV_Fax(0,QNV_FAX_TYPE,0,NULL) != FAX_TYPE_NULL)
+	AppendStatus('已经在处理传真...');
+ else
+ {
+   AppendStatus('开始接收...');
+   if(qnviccub.QNV_Fax(0,QNV_FAX_STARTRECV,0,recvfaxfile.value) > 0)
+   {
+     if(qnviccub.QNV_GetDevCtrl(0,QNV_CTRL_PHONE) == 0 || (qnviccub.QNV_DevInfo(0,QNV_DEVINFO_GETMODULE)&DEVMODULE_SWITCH) != 0)
+     {
+           AppendStatus('正在接收传真...');
+     }
+	else
+	{
+		//如果没有继电器的,软摘机,然后提示用户挂机,检测到挂机后启动传真
+		//这样主窗口检测到挂机后不能让它软挂机成功
+		//立即暂停,等待挂机后恢复开始
+		qnviccub.QNV_Fax(0,QNV_FAX_PAUSE,0,NULL);
+		AppendStatus('准备接收传真,请挂机...');
+	}
+   }
+ }
+}
+
+function StopRecvFax()
+{
+	qnviccub.QNV_Fax(0,QNV_FAX_STOPRECV,0,NULL);
+	AppendStatus('已经停止接收传真...');
+}
+
+
+function  SelectSaveFile()
+{
+	recvfaxfile.value=qnviccub.QNV_Tool(QNV_TOOL_SELECTFILE,1,"all files|*.*||",'recvfax.tif',0,0);
+}
+
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	switch(uEventType)
+	{
+	case BriEvent_PhoneHang:
+	{
+          if (qnviccub.QNV_Fax(0,QNV_FAX_ISPAUSE,0,NULL) != 0)
+          {
+               qnviccub.QNV_Fax(0,QNV_FAX_RESUME,0,NULL);
+               AppendStatus('正在接收传真...');
+          }
+	}
+	break;
+	case BriEvent_FaxRecvFinished:
+	{
+         qnviccub.QNV_Fax(0,QNV_FAX_STOPRECV,0,NULL);
+		 AppendStatus('接收传真完成');
+	}
+	break;
+	case BriEvent_FaxRecvFailed:case BriEvent_Silence:case BriEvent_Busy:case BriEvent_RemoteHang:
+    {
+    	AppendStatus('接收传真失败 eid='+uEventType);
+    	qnviccub.QNV_Fax(0,QNV_FAX_STOPRECV,0,NULL);
+    }break;	
+	}	
+}
+</script>   
+  
+<body onload="InitRecvFax()" onunload="ExitRecvFax()">
+<p>
+当前主页面：</p>
+<p>
+<textarea id="StatusArea" rows="8" name="S1" cols="50"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==
+" width="33" height="33"></object>
+</p>
+<p>
+　</p>
+<p>
+接收传真保存路径:<input type="text" name="T5" ID="recvfaxfile" size="62"><input type="button" value="选择文件" name="B14" onclick="SelectSaveFile()"> </p>
+
+
+<p><input type="button" value="开始接收" name="B11" onclick="StartRecvFax()">&nbsp;
+<input type="button" value="停止接收" name="B12" onclick="StopRecvFax()"></p>
+
+
+</body>
+
+</html>

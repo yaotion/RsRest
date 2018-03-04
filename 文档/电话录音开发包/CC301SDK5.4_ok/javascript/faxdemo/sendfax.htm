@@ -1,0 +1,132 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>CC301 传真发送演示</title>
+</head>
+
+<script language="javascript" type="text/javascript" src="../js/qnviccub.js"></script>
+<script language="javascript" type="text/javascript" src="../js/qnvfunc.js"></script>
+<script   language=javascript>  
+function AppendStatus(szStatus)
+{
+	StatusArea.value +=szStatus+"\r\n";
+	StatusArea.scrollTop=StatusArea.scrollHeight;
+}
+function AppendStatusEx(uID,szStatus)
+{
+	uID=uID+1;
+	AppendStatus("通道"+uID+":"+szStatus);
+}
+
+function  InitSendFax()
+{
+	if(qnviccub.QNV_Attach(0) <= 0)
+		alert('绑定失败');
+	
+	window.opener.vSendfaxwin=this;	
+}
+
+function  ExitSendFax()
+{
+	window.opener.vSendfaxwin=0;
+}
+
+function  SelectFile()
+{
+	sendfaxfile.value=qnviccub.QNV_Tool(QNV_TOOL_SELECTFILE,0,"Image Files(*.bmp,*.jpg,*.jpeg,*.gif,*.png,*.pcx,*.tif,*.tiff)|*.bmp;*.jpg;*.jpeg;*.gif;*.png;*.pcx;*.tif;*.tiff;|Web Files(*.mht,*.htm,*.html)|*.mht;*.htm;*.html;|Word Files(*.doc)|*.doc;||",'',0,0);
+}
+
+function  StartSendFax()
+{
+	if(sendfaxfile.value == '')
+	{
+		alert('发送文件路径不能为空');
+		return 0;
+	}
+	if(qnviccub.QNV_Fax(0,QNV_FAX_LOAD,0,NULL) <= 0)
+ 	{
+		AppendStatus('启动传真失败...');
+		return;
+ 	}
+	
+	if(qnviccub.QNV_Fax(0,QNV_FAX_TYPE,0,NULL) != FAX_TYPE_NULL)
+	{
+		alert('正在处理传真');
+	 	return 0;
+	}
+	if(qnviccub.QNV_Fax(0,QNV_FAX_STARTSEND,0,sendfaxfile.value) > 0)
+	{
+		if((qnviccub.QNV_DevInfo(0,QNV_DEVINFO_GETMODULE)&DEVMODULE_SWITCH)
+			|| !qnviccub.QNV_GetDevCtrl(0,QNV_CTRL_PHONE))
+		{
+			AppendStatus("正在发送传真...");
+		}else
+		{
+			//如果没有继电器的,软摘机,然后提示用户挂机,检测到挂机后启动传真
+			//这样主窗口检测到挂机后不能让它软挂机成功
+			//立即暂停,等待挂机后恢复开始
+			qnviccub.QNV_Fax(0,QNV_FAX_PAUSE,0,NULL);
+			AppendStatus("请挂机...");
+		}
+		return 1;
+	}else
+	{
+		AppendStatus("启动发送传真失败...");
+		return 0;
+	}
+}
+
+function  StopSendFax()
+{
+	qnviccub.QNV_Fax(0,QNV_FAX_STOPSEND,0,NULL);
+	AppendStatus('已经停止发送传真...');
+}
+
+function  T_GetEvent(uID,uEventType,uHandle,uResult,szdata)
+{
+	switch(uEventType)
+	{
+	case BriEvent_PhoneHang:
+	{
+          if (qnviccub.QNV_Fax(0,QNV_FAX_ISPAUSE,0,NULL) != 0)
+          {
+               qnviccub.QNV_Fax(0,QNV_FAX_RESUME,0,NULL);
+               AppendStatus('正在发送传真...');
+          }
+	}
+	break;
+	case BriEvent_FaxSendFinished:
+	{
+         qnviccub.QNV_Fax(0,QNV_FAX_STOPSEND,0,NULL);
+		 AppendStatus('发送传真完成');
+	}
+	break;
+	case BriEvent_FaxSendFailed:case BriEvent_Busy:case BriEvent_RemoteHang:
+	{
+    	AppendStatus('发送传真失败 eid='+uEventType);
+    	qnviccub.QNV_Fax(0,QNV_FAX_STOPSEND,0,NULL);
+    }break;	
+	}	
+}
+ 
+  </script>   
+  
+<body onload="InitSendFax()" onunload="ExitSendFax()">
+<p>
+<textarea id="StatusArea" rows="13" name="S1" cols="86"></textarea>
+ 
+<object classid="clsid:F44CFA19-6B43-45EE-90A3-29AA08000510" id="qnviccub" data="DATA:application/x-oleobject;BASE64,GfpM9ENr7kWQoymqCAAFEAADAAD7FAAADhEAAA==
+" width="33" height="33"></object>
+</p>
+<p>
+发送文件路径：<input type="text" name="T5" ID="sendfaxfile" size="62"><input type="button" value="选择文件" name="B13" onclick="SelectFile()"></p>
+<p>
+</p>
+
+<p><input type="button" value="开始发送" name="B11" onclick="StartSendFax()">&nbsp;
+<input type="button" value="停止发送" name="B12" onclick="StopSendFax()"></p>
+
+</body>
+</html>

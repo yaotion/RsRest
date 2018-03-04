@@ -1,0 +1,5 @@
+点击makecab.bat进行cab文件打包,本地目录输出qnviccub.cab
+
+Makecab.exe:cab打包工具
+qnviccub.INF/qnviccub.ddf:cab打包文件
+makecab.bat:cab打包批处理工具,调用makecab自动打包

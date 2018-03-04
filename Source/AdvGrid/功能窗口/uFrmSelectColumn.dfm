@@ -1,0 +1,59 @@
+object frmSelectColumn: TfrmSelectColumn
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  Caption = #36873#25321#26174#31034#21015
+  ClientHeight = 332
+  ClientWidth = 410
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 24
+    Top = 16
+    Width = 132
+    Height = 13
+    Caption = #35831#36873#25321#24744#24819#35201#26174#31034#30340#21015#12290
+  end
+  object Button1: TButton
+    Left = 226
+    Top = 295
+    Width = 75
+    Height = 25
+    Caption = #30830#23450
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 307
+    Top = 295
+    Width = 75
+    Height = 25
+    Caption = #21462#28040
+    TabOrder = 1
+    OnClick = Button2Click
+  end
+  object RzListView1: TRzListView
+    Left = 24
+    Top = 35
+    Width = 358
+    Height = 246
+    Checkboxes = True
+    Columns = <>
+    Ctl3D = False
+    FlatScrollBars = True
+    FrameStyle = fsGroove
+    HideSelection = False
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 2
+    ViewStyle = vsList
+  end
+end

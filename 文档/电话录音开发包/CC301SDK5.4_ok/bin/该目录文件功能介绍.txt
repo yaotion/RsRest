@@ -1,0 +1,53 @@
+该目录文件功能介绍.txt
+	- 本文件
+qnviccubdemo.exe
+	- cc301所有模块的内部测试程序,可以对开发接口和设备进行全方位的测试.
+qnviccubdemod.exe
+	- cc301所有模块的内部测试程序,功能跟qnviccubdemo.exe一样。(只有安装了vc的PC才能正常启动)
+bin
+	- 语音识别库目录，需要语音识别功能的把该目录复制您工程目录下。
+faxlib
+	- 传真收发库，需要传真收发功能的把该目录复制您工程目录下。
+voice
+	- 测试播放字符的的wav文件
+FileList.txt
+	- 测试播放字符的的wav文件索引
+bridge.dll
+	- CC即时消息/文件传输/P2P语音模块.(必须,不能少)
+BriFaxUI.dll
+	- 传真收发演示界面模块。
+Bripstndb.dll
+	- 大陆号码长度/定位判断，不保证手机号码定位功能库为最新
+ccdemo.exe
+	- vc的CC即时消息/文件传输/P2P语音模块演示程序发布版本
+ccdemod.exe
+	- vc的CC即时消息/文件传输/P2P语音模块演示程序演示版本,功能跟ccdemo一样。(只有安装了vc的PC才能正常启动)
+ccdemoProject.exe
+	- delphi的CC即时消息/文件传输/P2P语音模块演示程序
+faxdemoProject.exe
+	- delphi的传真收发演示程序
+pstndemoProject.exe
+	- delphi的CC301设备控制演示程序
+switchdemo.exe
+	- 演示LPQ设备型号的PSTN呼入后使用软交换进行通话测试
+WinUdt.dll/zlib.dll
+	- cc文件传输协议模块
+qnvfiletrans.dll
+	- cc文件传输界面组件
+qnviccub.dll
+	- cc301设备核心控制模块,所有接口都从该DLL导出(必须,不能少)
+vbpstndemo.exe
+	- 使用VB语言写的控制CC301演示程序
+vbCCProject.exe
+	- 使用VB语言写的即时消息/文件传输/P2P语音模块演示程序演示版本
+
+mic.JPG
+	- 使用MIC通话需要操作的控制
+1.使用组件模式开发时，执行组件注册模块的reg2currentpath.bat或者reg2system32.bat注册组件后再使用
+2.使用DLL方式开发就不需要注册
+3.使用组件签名打包makecab.bat执行把pstn模块打包成qnviccub.cab文件,再进行数字签名后就可以在线安装.
+4.CC301设备模块开发支持的DLL为bridge.dll和qnviccub.dll,开始程序后必须使用的DLL。
+5.WinUdt.dll/zlib.dll/qnvfiletrans.dll为使用网络CC传输文件模块支持的DLL。
+6.BriFaxUI.dll为VC例子传真操作状态的例子界面,开发程序可以不需要。
+
+

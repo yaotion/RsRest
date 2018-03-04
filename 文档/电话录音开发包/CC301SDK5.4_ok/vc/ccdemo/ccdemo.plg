@@ -1,0 +1,87 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ccdemo - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/ccdemo.res" /d "_DEBUG" /d "_AFXDLL" "E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\ccdemo.rc"" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP99E.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ccdemo.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\CCCall.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\CCCmd.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\ccdemo.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\ccdemoDlg.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\CCMsg.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\Contact.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\FileTrans.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\InputCC.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\InputSvrIP.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\LoginCC.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\MsgParse.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\qnvfiletransfer1.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\RecvFile.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\RegCC.cpp"
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\SendFile.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP99E.tmp" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP99F.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/ccdemo.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\Project\Bridge\BriDevice\sdkdemo\vc\ccdemo\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP99F.tmp" 
+Creating temporary file "C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP9A0.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/ccdemod.pdb" /debug /machine:I386 /out:"../../bin/ccdemod.exe" /pdbtype:sept 
+.\Debug\CCCall.obj
+.\Debug\CCCmd.obj
+.\Debug\ccdemo.obj
+.\Debug\ccdemoDlg.obj
+.\Debug\CCMsg.obj
+.\Debug\Contact.obj
+.\Debug\FileTrans.obj
+.\Debug\InputCC.obj
+.\Debug\InputSvrIP.obj
+.\Debug\LoginCC.obj
+.\Debug\MsgParse.obj
+.\Debug\qnvfiletransfer1.obj
+.\Debug\RecvFile.obj
+.\Debug\RegCC.obj
+.\Debug\SendFile.obj
+.\Debug\StdAfx.obj
+.\Debug\ccdemo.res
+]
+Creating command line "link.exe @C:\DOCUME~1\Owner\LOCALS~1\Temp\RSP9A0.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+CCCall.cpp
+CCCmd.cpp
+ccdemo.cpp
+ccdemoDlg.cpp
+CCMsg.cpp
+Contact.cpp
+FileTrans.cpp
+InputCC.cpp
+InputSvrIP.cpp
+LoginCC.cpp
+MsgParse.cpp
+qnvfiletransfer1.cpp
+RecvFile.cpp
+RegCC.cpp
+SendFile.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+ccdemod.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
